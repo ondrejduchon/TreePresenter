@@ -1,0 +1,49 @@
+body {
+    display: block;
+    background-color: white;
+    margin: 1em;
+}
+
+body > * {
+    display: block;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-size: 3em;
+    color: black;
+    font-weight: bold;
+    margin: 0.5em 0;
+}
+
+.slide-comment {
+    display: inline-block;
+    padding: 0.5em 0;
+    background-color: lightgray;
+    margin: 0.5em 0;
+}
+
+.slide-comment:hover {
+    cursor: help;
+}
+
+ul, ol, dl {
+    font-size: 1.5em;
+    margin-left: 1em;
+}
+
+ul li, ol li {
+    margin: 0.5em 0;
+}
+
+ul {
+    list-style-type: circle;
+}
+
+ol {
+    list-style-type: decimal;
+    margin-left: 1.5em;
+}
+
+img {
+    max-width: 50%;
+}
