@@ -60,6 +60,7 @@ table {
       width: 0;
       position: absolute; }
     #navigation #navigation-wrap #tp-zoom {
+      display: none;
       margin-top: 2.25em;
       margin-left: 2.25em;
       width: 1.5em;
@@ -410,6 +411,12 @@ input:checked + .slider:before {
     margin-left: 8%; }
     #slides ul li {
       list-style-type: disc; }
+    #slides ul li:first-of-type {
+      padding-top: 1.5em;
+    }
+    #slides ul p {
+      padding-bottom: 1em;
+      margin-left: 0}
   #slides ol {
     list-style-position: inside;
     margin-left: 5%; }
