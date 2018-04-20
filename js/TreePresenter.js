@@ -409,6 +409,30 @@
                 this.setSiblings(node.children);
                 this.setDerivation(node);
                 this.setContent(node);
+
+                if (node.derivation) {
+                    let deriv = node.derivation.innerHTML;
+                    node.derivation.innerHTML = '';
+
+                    node.content.forEach(function (cont) {
+                        if (cont.toString() === '[object HTMLParagraphElement]') {
+                            node.derivation.innerHTML += '<p>' + cont.innerHTML + '</p>';
+                        }
+                    });
+
+                    node.derivation.innerHTML += deriv;
+                }
+
+                // if (node.derivation && node.content[0]) {
+                //     let cont = node.content[0];
+                //
+                //     if (cont.toString() === '[object HTMLParagraphElement]') {
+                //         let deriv = node.derivation.innerHTML;
+                //         node.derivation.innerHTML = '<p>' + cont.innerHTML + '</p>';
+                //         node.derivation.innerHTML += deriv;
+                //     }
+                // }
+
                 return node;
             }
 
