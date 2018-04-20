@@ -129,6 +129,8 @@
             this.presentationNumber = 0;
 
             this.activeNode = null;
+
+            this.prevNode = null;
         }
 
         /**
@@ -1649,6 +1651,8 @@
             key: 'navLinearForward',
             value: function navLinearForward() {
 
+                this.tree.prevNode = this.tree.activeNode;
+
                 if (!this.activeZoom && this.tree.activeNode.children.length) {
                     this.hideSlide(this.tree.activeNode);
                     this.showSlide(this.tree.child());
@@ -1671,16 +1675,6 @@
                         this.showSlide(this.tree.rightSibling());
                     }
                 }
-
-                /*var next = this.tree.findFollower(this.tree.activeNode);
-                if (next) {
-                    this.hideSlide(this.tree.activeNode);
-                    this.activeZoomSlide = 0;
-                    this.tree.activeNode = next;
-                    this.showSlide(next);
-                } else {
-
-                }*/
             }
 
             /**
@@ -1708,15 +1702,45 @@
             key: 'navLinearBackward',
             value: function navLinearBackward() {
 
-                // TODO
-
-                var prev = this.tree.findPredecessor(this.tree.activeNode);
-                if (prev) {
+                if (this.tree.prevNode && this.tree.prevNode !== this.tree.activeNode) {
                     this.hideSlide(this.tree.activeNode);
-                    this.activeZoomSlide = 0;
-                    this.tree.activeNode = prev;
-                    this.showSlide(prev);
+                    this.tree.activeNode = this.tree.prevNode;
+                    this.showSlide(this.tree.activeNode);
+                } else if (!this.activeZoom && this.tree.activeNode.children.length) {
+
+                    this.hideSlide(this.tree.activeNode);
+                    this.showSlide(this.tree.child());
+                    while (this.tree.activeNode.rightSibling !== null) {
+                        this.hideSlide(this.tree.activeNode);
+                        this.showSlide(this.tree.rightSibling());
+                    }
+
+                } else {
+                    if (this.tree.activeNode.leftSibling !== null) {
+                        this.hideSlide(this.tree.activeNode);
+                        this.showSlide(this.tree.leftSibling());
+                    } else {
+
+                        let prev = this.tree.findPredecessor(this.tree.activeNode);
+
+                        while (prev && prev.leftSibling === null) {
+                            this.hideSlide(this.tree.activeNode);
+                            this.activeZoomSlide = 0;
+                            this.tree.activeNode = prev;
+                            this.showSlide(prev);
+                            prev = this.tree.findPredecessor(this.tree.activeNode);
+                        }
+
+                        if (prev) {
+                            this.hideSlide(this.tree.activeNode);
+                            this.activeZoomSlide = 0;
+                            this.tree.activeNode = prev.leftSibling;
+                            this.showSlide(prev.leftSibling);
+                        }
+                    }
                 }
+
+                this.tree.prevNode = this.tree.activeNode;
             }
 
             /**
