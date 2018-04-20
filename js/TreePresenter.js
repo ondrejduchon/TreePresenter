@@ -591,7 +591,7 @@
                 var settings = document.createElement('div');
                 settings.id = 'tp-settings';
 
-                settings.innerHTML = '\n                    <div id="tp-settings-wrap">\n                        <h1>Settings</h1>\n                        <div>\n                            <h2>Hiding navigation</h2>\n                            <div id="hide-nav">\n                                <label class="switch">\n                                    <input id="hide-nav-button" type="checkbox">\n                                    <div class="slider round"></div>\n                                </label>\n                            </div>\n                        </div>\n                        <div>\n                            <h2>Linear navigation</h2>\n                            <div id="linear-nav">\n                                <label class="switch">\n                                    <input id="linear-nav-button" type="checkbox">\n                                    <div class="slider round"></div>\n                                </label>\n                            </div>\n                        </div>\n                        <div>\n                            <h2>Aspect ratio</h2>\n                            <div id="ratios">\n                                <button id="ratio-4-3">4:3</button>\n                                <button id="ratio-16-9">16:9</button>\n                                <button id="ratio-16-10">16:10</button>\n                                <button id="ratio-auto">auto</button>\n                            </div>\n                        </div>\n                        <div>\n                            <h2>Theme</h2>\n                            <div id="themes">\n                                <button id="black"></button>\n                                <button id="red"></button>\n                                <button id="green"></button>\n                                <button id="blue"></button>\n                            </div>\n                        </div>\n                    </div>';
+                settings.innerHTML = '\n                    <div id="tp-settings-wrap">\n                        <h1>Settings</h1>\n                        <div>\n                            <h2>Hiding navigation</h2>\n                            <div id="hide-nav">\n                                <label class="switch">\n                                    <input id="hide-nav-button" type="checkbox">\n                                    <div class="slider round"></div>\n                                </label>\n                            </div>\n                        </div>\n                        <div>\n                            <h2>Aspect ratio</h2>\n                            <div id="ratios">\n                                <button id="ratio-4-3">4:3</button>\n                                <button id="ratio-16-9">16:9</button>\n                                <button id="ratio-16-10">16:10</button>\n                                <button id="ratio-auto">auto</button>\n                            </div>\n                        </div>\n                        <div>\n                            <h2>Theme</h2>\n                            <div id="themes">\n                                <button id="black"></button>\n                                <button id="red"></button>\n                                <button id="green"></button>\n                                <button id="blue"></button>\n                            </div>\n                        </div>\n                    </div>';
 
                 return settings;
             }
@@ -850,7 +850,6 @@
 
                 var ratiosElem = document.getElementById('ratios');
                 var hideNavElem = document.getElementById('hide-nav-button');
-                var linearNavElem = document.getElementById('linear-nav-button');
                 var themesElem = document.getElementById('themes');
 
                 ratiosElem.addEventListener('click', function (e) {
@@ -866,11 +865,6 @@
 
                 hideNavElem.addEventListener('click', function () {
                     _this2.toggleNavigation(!_this2.hideNav);
-                });
-
-                linearNavElem.addEventListener('click', function () {
-                    _this2.presenter.activeLinearNav = !_this2.presenter.activeLinearNav;
-                    localStorage.setItem('linearNav', _this2.presenter.activeLinearNav);
                 });
 
                 themesElem.addEventListener('click', function (e) {
