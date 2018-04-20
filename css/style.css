@@ -121,8 +121,7 @@ table {
   #tp-icons.active {
     visibility: visible; }
   #tp-icons i {
-    margin-right: 0.3em;
-    color: lightgray; }
+    margin-right: 0.3em; }
   #tp-icons i:hover {
     cursor: pointer; }
 
