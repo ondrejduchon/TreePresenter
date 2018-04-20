@@ -1648,13 +1648,39 @@
         }, {
             key: 'navLinearForward',
             value: function navLinearForward() {
-                var next = this.tree.findFollower(this.tree.activeNode);
+
+                if (!this.activeZoom && this.tree.activeNode.children.length) {
+                    this.hideSlide(this.tree.activeNode);
+                    this.showSlide(this.tree.child());
+                } else {
+                    if (this.activeZoom) {
+                        let acPos = this.tree.activeNode;
+                        this.changeSlideContent(1);
+                        if (acPos === this.tree.activeNode) {
+                            this.hideSlide(this.tree.activeNode);
+                            this.activeZoomSlide = 0;
+                            this.showSlide(this.tree.parent());
+                            if (this.tree.activeNode.parent === null) {
+                                return;
+                            }
+                            this.hideSlide(this.tree.activeNode);
+                            this.showSlide(this.tree.rightSibling());
+                        }
+                    } else if (this.tree.activeNode.rightSibling) {
+                        this.hideSlide(this.tree.activeNode);
+                        this.showSlide(this.tree.rightSibling());
+                    }
+                }
+
+                /*var next = this.tree.findFollower(this.tree.activeNode);
                 if (next) {
                     this.hideSlide(this.tree.activeNode);
                     this.activeZoomSlide = 0;
                     this.tree.activeNode = next;
                     this.showSlide(next);
-                }
+                } else {
+
+                }*/
             }
 
             /**
@@ -2031,6 +2057,12 @@
                             if (_this8.canNavigate('map')) {
                                 _this8.toggleMiniMap();
                             }
+                            break;
+                        case 39:
+                            _this8.navLinearForward();
+                            break;
+                        case 37:
+                            _this8.navLinearBackward();
                             break;
                         case 78:
                             if (_this8.canNavigate('change')) {
