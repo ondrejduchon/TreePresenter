@@ -1707,6 +1707,9 @@
         }, {
             key: 'navLinearBackward',
             value: function navLinearBackward() {
+
+                // TODO
+
                 var prev = this.tree.findPredecessor(this.tree.activeNode);
                 if (prev) {
                     this.hideSlide(this.tree.activeNode);
@@ -1990,7 +1993,7 @@
                     case 'map':
                         return !this.activeSettings && !this.activeDownload && !this.activeHelp;
                     default:
-                        return !this.activeMiniMap && !this.activeSettings && !this.activeDownload && !this.activeHelp;
+                        return !this.activeSettings && !this.activeDownload && !this.activeHelp;
                 }
             }
 
@@ -2033,16 +2036,32 @@
                             _this8.closeWindow();
                             break;
                         case 74:
-                            if (_this8.canNavigate('left')) _this8.navLeftSibling();
+                            if (_this8.canNavigate('left')) {
+                                _this8.navLeftSibling();
+                                _this8.toggleMiniMap();
+                                _this8.toggleMiniMap();
+                            }
                             break;
                         case 73:
-                            if (_this8.canNavigate('up')) _this8.navParent();
+                            if (_this8.canNavigate('up')) {
+                                _this8.navParent();
+                                _this8.toggleMiniMap();
+                                _this8.toggleMiniMap();
+                            }
                             break;
                         case 76:
-                            if (_this8.canNavigate('right')) _this8.navRightSibling();
+                            if (_this8.canNavigate('right')) {
+                                _this8.navRightSibling();
+                                _this8.toggleMiniMap();
+                                _this8.toggleMiniMap();
+                            }
                             break;
                         case 75:
-                            if (_this8.canNavigate('down')) _this8.navChild();
+                            if (_this8.canNavigate('down')) {
+                                _this8.navChild();
+                                _this8.toggleMiniMap();
+                                _this8.toggleMiniMap();
+                            }
                             break;
                         case 68:
                             if (_this8.canNavigate('download')) _this8.toggleDownload();
@@ -2059,10 +2078,18 @@
                             }
                             break;
                         case 39:
-                            _this8.navLinearForward();
+                            if (_this8.canNavigate('right')) {
+                                _this8.navLinearForward();
+                                _this8.toggleMiniMap();
+                                _this8.toggleMiniMap();
+                            }
                             break;
                         case 37:
-                            _this8.navLinearBackward();
+                            if (_this8.canNavigate('left')) {
+                                _this8.navLinearBackward();
+                                _this8.toggleMiniMap();
+                                _this8.toggleMiniMap();
+                            }
                             break;
                         case 78:
                             if (_this8.canNavigate('change')) {
