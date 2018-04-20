@@ -420,6 +420,8 @@ input:checked + .slider:before {
     margin-left: 5%;
     max-height: calc(100% - 6em);
     max-width: 90%; }
+  #slides a {
+    color: black; }
 
 #tree-presenter {
   width: 100vw;

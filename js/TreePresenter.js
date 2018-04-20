@@ -355,9 +355,10 @@
                 if (node.children.length) {
                     var derivation = '';
                     node.children.forEach(function (child) {
-                        derivation += '<li>';
+                        //node.heading.id
+                        derivation += '<li><a href="' + '#' + child.heading.id + '">';
                         derivation += child.heading.innerText;
-                        derivation += '</li>';
+                        derivation += '</a></li>';
                     });
                     node.derivation = document.createElement('ul');
                     node.derivation.innerHTML = derivation;
@@ -1253,6 +1254,8 @@
             this.xDown = null;
             this.yDown = null;
 
+            this.setPolyfill();
+
             // Build tree presentation structure based on users HTML5
             this.tree = new Tree();
             this.tree.build();
@@ -1272,6 +1275,7 @@
             this.listenKeys();
             this.listenTouches();
             this.setFirstSlide();
+            this.listenHashChanges();
 
             this.settings.setFromLocalStorage();
             this.listenScreenResize();
@@ -1281,19 +1285,57 @@
             this.html = new HTML(this.tree);
         }
 
-        /**
-         * Customize screen on resize
-         */
-
-
         createClass(Presenter, [{
+            key: 'listenHashChanges',
+            value: function listenHashChanges() {
+                var _this = this;
+
+                window.addEventListener("hashchange", function () {
+                    if (location.hash.slice(1)) {
+                        var prevNode = _this.tree.activeNode;
+                        var searchedElement = _this.tree.searchById(location.hash.slice(1));
+                        if (searchedElement) {
+                            _this.hideSlide(prevNode);
+                            _this.showSlide(searchedElement);
+                        }
+                    }
+                }, false);
+            }
+
+            /**
+             * Adding element.path function to Safari and Mozilla
+             */
+
+        }, {
+            key: 'setPolyfill',
+            value: function setPolyfill() {
+                if (!("path" in Event.prototype)) Object.defineProperty(Event.prototype, "path", {
+                    get: function get$$1() {
+                        var path = [];
+                        var currentElem = this.target;
+                        while (currentElem) {
+                            path.push(currentElem);
+                            currentElem = currentElem.parentElement;
+                        }
+                        if (path.indexOf(window) === -1 && path.indexOf(document) === -1) path.push(document);
+                        if (path.indexOf(window) === -1) path.push(window);
+                        return path;
+                    }
+                });
+            }
+
+            /**
+             * Customize screen on resize
+             */
+
+        }, {
             key: 'listenScreenResize',
             value: function listenScreenResize() {
-                var _this = this;
+                var _this2 = this;
 
                 this.settings.adjustListSize();
                 window.addEventListener('resize', function () {
-                    _this.settings.updateScreenRatio();
+                    _this2.settings.updateScreenRatio();
                 });
             }
 
@@ -1382,7 +1424,7 @@
         }, {
             key: 'createCloseButton',
             value: function createCloseButton() {
-                var _this2 = this;
+                var _this3 = this;
 
                 var button = document.createElement('div');
                 button.id = 'tp-close-window';
@@ -1391,7 +1433,7 @@
 
                 this.closeButton = document.getElementById('tp-close-window');
                 this.closeButton.addEventListener('click', function () {
-                    return _this2.closeActiveWindow();
+                    return _this3.closeActiveWindow();
                 });
             }
 
@@ -1794,16 +1836,16 @@
              * Handle swipe gestures
              */
             value: function listenTouches() {
-                var _this3 = this;
+                var _this4 = this;
 
                 this.presentationElem.addEventListener('touchstart', function (e) {
-                    if (!_this3.activeMiniMap && !_this3.activeSettings) {
-                        _this3.handleTouchStart(e);
+                    if (!_this4.activeMiniMap && !_this4.activeSettings) {
+                        _this4.handleTouchStart(e);
                     }
                 }, false);
                 this.presentationElem.addEventListener('touchmove', function (e) {
-                    if (!_this3.activeMiniMap && !_this3.activeSettings) {
-                        _this3.handleTouchMove(e);
+                    if (!_this4.activeMiniMap && !_this4.activeSettings) {
+                        _this4.handleTouchMove(e);
                     }
                 }, false);
             }
@@ -1815,20 +1857,20 @@
         }, {
             key: 'listenDownload',
             value: function listenDownload() {
-                var _this4 = this;
+                var _this5 = this;
 
                 var pdf = document.getElementById('tp-download-pdf');
                 var latex = document.getElementById('tp-download-latex');
                 var html = document.getElementById('tp-download-html');
 
                 pdf.addEventListener('click', function () {
-                    return _this4.pdf.download();
+                    return _this5.pdf.download();
                 });
                 latex.addEventListener('click', function () {
-                    return _this4.latex.download();
+                    return _this5.latex.download();
                 });
                 html.addEventListener('click', function () {
-                    return _this4.html.download();
+                    return _this5.html.download();
                 });
             }
 
@@ -1839,7 +1881,7 @@
         }, {
             key: 'listenIcons',
             value: function listenIcons() {
-                var _this5 = this;
+                var _this6 = this;
 
                 this.icons = {
                     map: document.getElementById("tp-icon-map"),
@@ -1849,16 +1891,16 @@
                 };
 
                 this.icons.map.addEventListener("click", function () {
-                    return _this5.toggleMiniMap();
+                    return _this6.toggleMiniMap();
                 });
                 this.icons.settings.addEventListener("click", function () {
-                    return _this5.toggleSettings();
+                    return _this6.toggleSettings();
                 });
                 this.icons.help.addEventListener("click", function () {
-                    return _this5.toggleHelp();
+                    return _this6.toggleHelp();
                 });
                 this.icons.download.addEventListener("click", function () {
-                    return _this5.toggleDownload();
+                    return _this6.toggleDownload();
                 });
             }
 
@@ -1869,7 +1911,7 @@
         }, {
             key: 'listenNavigation',
             value: function listenNavigation() {
-                var _this6 = this;
+                var _this7 = this;
 
                 this.nav = {
                     left: document.getElementById("tp-left"),
@@ -1880,19 +1922,19 @@
                 };
 
                 this.nav.down.addEventListener("click", function () {
-                    return _this6.navChild();
+                    return _this7.navChild();
                 });
                 this.nav.up.addEventListener("click", function () {
-                    return _this6.navParent();
+                    return _this7.navParent();
                 });
                 this.nav.left.addEventListener("click", function () {
-                    return _this6.navLeftSibling();
+                    return _this7.navLeftSibling();
                 });
                 this.nav.right.addEventListener("click", function () {
-                    return _this6.navRightSibling();
+                    return _this7.navRightSibling();
                 });
                 this.nav.zoom.addEventListener("click", function () {
-                    return _this6.navZoom();
+                    return _this7.navZoom();
                 });
             }
         }, {
@@ -1951,54 +1993,57 @@
         }, {
             key: 'listenKeys',
             value: function listenKeys() {
-                var _this7 = this;
+                var _this8 = this;
 
                 document.onkeydown = function (e) {
                     switch (e.keyCode) {
                         case 8:
-                            _this7.closeWindow();
+                            _this8.closeWindow();
                             break;
-                        case 13:
-                            if (_this7.canNavigate('zoom')) _this7.navZoom();
+                        case 32:
+                            if (_this8.canNavigate('zoom')) _this8.navZoom();
                             break;
                         case 27:
-                            _this7.closeWindow();
+                            _this8.closeWindow();
                             break;
-                        case 37:
-                            if (_this7.canNavigate('left')) _this7.navLeftSibling();
+                        case 74:
+                            if (_this8.canNavigate('left')) _this8.navLeftSibling();
                             break;
-                        case 38:
-                            if (_this7.canNavigate('up')) _this7.navParent();
+                        case 73:
+                            if (_this8.canNavigate('up')) _this8.navParent();
                             break;
-                        case 39:
-                            if (_this7.canNavigate('right')) _this7.navRightSibling();
+                        case 76:
+                            if (_this8.canNavigate('right')) _this8.navRightSibling();
                             break;
-                        case 40:
-                            if (_this7.canNavigate('down')) _this7.navChild();
+                        case 75:
+                            if (_this8.canNavigate('down')) _this8.navChild();
                             break;
                         case 68:
-                            if (_this7.canNavigate('download')) _this7.toggleDownload();
+                            if (_this8.canNavigate('download')) _this8.toggleDownload();
                             break;
                         case 72:
-                            if (_this7.canNavigate('help')) _this7.toggleHelp();
+                            if (_this8.canNavigate('help')) _this8.toggleHelp();
+                            break;
+                        case 191:
+                            if (_this8.canNavigate('help')) _this8.toggleHelp();
                             break;
                         case 77:
-                            if (_this7.canNavigate('map')) {
-                                _this7.toggleMiniMap();
+                            if (_this8.canNavigate('map')) {
+                                _this8.toggleMiniMap();
                             }
                             break;
                         case 78:
-                            if (_this7.canNavigate('change')) {
+                            if (_this8.canNavigate('change')) {
                                 if (e.key === "n") {
-                                    _this7.changePresentation(true);
+                                    _this8.changePresentation(true);
                                 } else {
-                                    _this7.changePresentation(false);
+                                    _this8.changePresentation(false);
                                 }
                             }
                             break;
                         case 83:
-                            if (_this7.canNavigate('settings')) {
-                                _this7.toggleSettings();
+                            if (_this8.canNavigate('settings')) {
+                                _this8.toggleSettings();
                             }
                             break;
                     }
@@ -2028,11 +2073,11 @@
         }, {
             key: 'listenMinimapNodes',
             value: function listenMinimapNodes() {
-                var _this8 = this;
+                var _this9 = this;
 
                 Array.from(document.getElementsByClassName("node")).forEach(function (element) {
                     return element.addEventListener("click", function (e) {
-                        return _this8.switchToSlide(e);
+                        return _this9.switchToSlide(e);
                     });
                 });
             }
