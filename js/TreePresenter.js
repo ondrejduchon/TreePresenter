@@ -363,6 +363,7 @@
                         derivation += '</a></li>';
                     });
                     node.derivation = document.createElement('ul');
+                    // TODO Potencialy incorrected HTML
                     node.derivation.innerHTML = derivation;
                 }
             }
@@ -414,24 +415,16 @@
                     let deriv = node.derivation.innerHTML;
                     node.derivation.innerHTML = '';
 
+                    let printedFirstPar = false;
                     node.content.forEach(function (cont) {
-                        if (cont.toString() === '[object HTMLParagraphElement]') {
+                        if (cont.toString() === '[object HTMLParagraphElement]' && !printedFirstPar) {
                             node.derivation.innerHTML += '<p>' + cont.innerHTML + '</p>';
+                            printedFirstPar = true;
                         }
                     });
 
                     node.derivation.innerHTML += deriv;
                 }
-
-                // if (node.derivation && node.content[0]) {
-                //     let cont = node.content[0];
-                //
-                //     if (cont.toString() === '[object HTMLParagraphElement]') {
-                //         let deriv = node.derivation.innerHTML;
-                //         node.derivation.innerHTML = '<p>' + cont.innerHTML + '</p>';
-                //         node.derivation.innerHTML += deriv;
-                //     }
-                // }
 
                 return node;
             }
@@ -1416,6 +1409,7 @@
                 help.id = 'tp-help';
 
                 help.innerHTML = '\n<div id="tp-help-wrap">\n<h1>Keyboard shortcuts</h1>\n<div>\n' +
+                    //'<img src="https://i.imgur.com/YSSkvVP.png">\n</div>\n<div>\n' +
                     '<h2>Zoom in/out</h2>\n<button>SPACE</button>\n</div>\n<div>\n' +
                     '<h2>Hirearchial navigation</h2>\n<button>&larr; J</button>\n<button>&darr; K</button>\n<button>&rarr; L</button>\n<button>&uarr; I</button>\n</div>\n<div>\n' +
                     '<h2>Linear navigation</h2>\n<button>&larr;</button>\n<button>&rarr;</button>\n</div>\n<div>\n' +
