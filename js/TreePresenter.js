@@ -1731,7 +1731,13 @@
                             this.navLeftSibling();
                         }
                     } else {
-                        this.changeSlideContent(-1);
+                        if (this.tree.prevNode && this.tree.prevNode !== this.tree.activeNode) {
+                            this.hideSlide(this.tree.activeNode);
+                            this.tree.activeNode = this.tree.prevNode;
+                            this.showSlide(this.tree.activeNode);
+                        } else {
+                            this.changeSlideContent(-1);
+                        }
                     }
                 } else if (this.tree.prevNode && this.tree.prevNode !== this.tree.activeNode) {
                     this.hideSlide(this.tree.activeNode);
