@@ -1672,27 +1672,21 @@
 
                 this.tree.prevNode = this.tree.activeNode;
 
-                if (!this.activeZoom && this.tree.activeNode.children.length) {
+                if (this.activeZoom) {
+                    if (this.tree.activeNode.children.length === 0 && this.tree.activeNode.rightSibling === null) {
+                        this.navParent();
+                        this.navRightSibling();
+                    } else {
+                        this.changeSlideContent(1);
+                    }
+                } else if (this.tree.activeNode.children.length) {
                     this.hideSlide(this.tree.activeNode);
                     this.showSlide(this.tree.child());
+                } else if (this.tree.activeNode.rightSibling) {
+                    this.hideSlide(this.tree.activeNode);
+                    this.showSlide(this.tree.rightSibling());
                 } else {
-                    if (this.activeZoom) {
-                        let acPos = this.tree.activeNode;
-                        this.changeSlideContent(1);
-                        if (acPos === this.tree.activeNode) {
-                            this.hideSlide(this.tree.activeNode);
-                            this.activeZoomSlide = 0;
-                            this.showSlide(this.tree.parent());
-                            if (this.tree.activeNode.parent === null) {
-                                return;
-                            }
-                            this.hideSlide(this.tree.activeNode);
-                            this.showSlide(this.tree.rightSibling());
-                        }
-                    } else if (this.tree.activeNode.rightSibling) {
-                        this.hideSlide(this.tree.activeNode);
-                        this.showSlide(this.tree.rightSibling());
-                    }
+                    this.navParent();
                 }
             }
 
@@ -1721,42 +1715,38 @@
             key: 'navLinearBackward',
             value: function navLinearBackward() {
 
-                if (this.tree.prevNode && this.tree.prevNode !== this.tree.activeNode) {
+                if (this.activeZoom) {
+                    if (this.tree.activeNode.children.length === 0 && this.tree.activeNode.leftSibling === null) {
+                        if (this.tree.prevNode && this.tree.prevNode !== this.tree.activeNode) {
+                            this.hideSlide(this.tree.activeNode);
+                            this.tree.activeNode = this.tree.prevNode;
+                            this.showSlide(this.tree.activeNode);
+                        } else {
+                            this.navParent();
+                            while (this.tree.activeNode.leftSibling === null && this.tree.activeNode.parent !== null) {
+                                this.navParent();
+                            }
+                            this.navLeftSibling();
+                        }
+                    } else {
+                        this.changeSlideContent(-1);
+                    }
+                } else if (this.tree.prevNode && this.tree.prevNode !== this.tree.activeNode) {
                     this.hideSlide(this.tree.activeNode);
                     this.tree.activeNode = this.tree.prevNode;
                     this.showSlide(this.tree.activeNode);
-                } else if (!this.activeZoom && this.tree.activeNode.children.length) {
-
+                } else if (this.tree.activeNode.children.length) {
                     this.hideSlide(this.tree.activeNode);
                     this.showSlide(this.tree.child());
                     while (this.tree.activeNode.rightSibling !== null) {
                         this.hideSlide(this.tree.activeNode);
                         this.showSlide(this.tree.rightSibling());
                     }
-
+                } else if (this.tree.activeNode.leftSibling) {
+                    this.hideSlide(this.tree.activeNode);
+                    this.showSlide(this.tree.leftSibling());
                 } else {
-                    if (this.tree.activeNode.leftSibling !== null) {
-                        this.hideSlide(this.tree.activeNode);
-                        this.showSlide(this.tree.leftSibling());
-                    } else {
-
-                        let prev = this.tree.findPredecessor(this.tree.activeNode);
-
-                        while (prev && prev.leftSibling === null) {
-                            this.hideSlide(this.tree.activeNode);
-                            this.activeZoomSlide = 0;
-                            this.tree.activeNode = prev;
-                            this.showSlide(prev);
-                            prev = this.tree.findPredecessor(this.tree.activeNode);
-                        }
-
-                        if (prev) {
-                            this.hideSlide(this.tree.activeNode);
-                            this.activeZoomSlide = 0;
-                            this.tree.activeNode = prev.leftSibling;
-                            this.showSlide(prev.leftSibling);
-                        }
-                    }
+                    this.navParent();
                 }
 
                 this.tree.prevNode = this.tree.activeNode;
