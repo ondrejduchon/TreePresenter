@@ -1415,7 +1415,15 @@
                 var help = document.createElement('div');
                 help.id = 'tp-help';
 
-                help.innerHTML = '\n                    <div id="tp-help-wrap">\n                        <h1>Keyboard shortcuts</h1>\n                        <div>\n                            <h2>Zoom in/out</h2>\n                            <button>SPACE</button>\n                        </div>\n                        <div>\n                            <h2>Navigation</h2>\n                            <button>&larr; J</button>\n                            <button>&darr; K</button>\n                            <button>&rarr; L</button>\n                            <button>&uarr; I</button>\n                        </div>\n                        <div>\n                            <h2>Settings</h2>\n                            <button>S</button>\n                        </div>\n                        <div>\n                            <h2>Presentation map</h2>\n                            <button>M</button>\n                        </div>\n                        <div>\n                            <h2>Downloads</h2>\n                            <button>D</button>\n                        </div>\n                        <div>\n                            <h2>Help</h2>\n                            <button>H, ?</button>\n                        </div>\n                        <div>\n                            <h2>Switch to next presentation</h2>\n                            <button>N</button>\n                        </div>\n                    </div>';
+                help.innerHTML = '\n<div id="tp-help-wrap">\n<h1>Keyboard shortcuts</h1>\n<div>\n' +
+                    '<h2>Zoom in/out</h2>\n<button>SPACE</button>\n</div>\n<div>\n' +
+                    '<h2>Hirearchial navigation</h2>\n<button>&larr; J</button>\n<button>&darr; K</button>\n<button>&rarr; L</button>\n<button>&uarr; I</button>\n</div>\n<div>\n' +
+                    '<h2>Linear navigation</h2>\n<button>&larr;</button>\n<button>&rarr;</button>\n</div>\n<div>\n' +
+                    '<h2>Settings</h2>\n<button>S</button>\n</div>\n<div>\n' +
+                    '<h2>Presentation map</h2>\n<button>M</button>\n</div>\n<div>\n' +
+                    '<h2>Downloads</h2>\n<button>D</button>\n</div>\n<div>\n' +
+                    '<h2>Help</h2>\n<button>H, ?</button>\n</div>\n<div>\n' +
+                    '<h2>Switch to next presentation</h2>\n<button>N</button>\n</div>\n</div>';
                 this.presentationElem.insertBefore(help, this.slidesElem);
                 // this.listenDownload();
             }
