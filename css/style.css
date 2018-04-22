@@ -432,6 +432,12 @@ input:checked + .slider:before {
     text-decoration: none }
   #slides a:hover {
     color: black; }
+  #slides #tp-navigation {
+    right: 0;
+    position: absolute;
+    padding: 3em;
+    padding-top: 5.8em;
+    padding-right: 1em;}
 
 #tree-presenter {
   width: 100vw;

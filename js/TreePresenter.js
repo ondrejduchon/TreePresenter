@@ -1283,6 +1283,9 @@
             this.createIcons();
             this.createNavigation();
 
+            this.droNav = '';
+            this.createNavi();
+
             // Create settings
             this.settings = new Settings(this.presentationElem, this.slidesElem, this);
 
@@ -1509,6 +1512,14 @@
              */
 
         }, {
+            key: 'createNavi',
+            value: function createNavi() {
+                this.droNav = document.createElement('div');
+                this.droNav.id = 'tp-navigation';
+                this.slidesElem.appendChild(this.droNav);
+            }
+
+        }, {
             key: 'createNavigation',
             value: function createNavigation() {
                 var navigation = document.createElement('div');
@@ -1580,6 +1591,26 @@
                 }
                 this.settings.adjustListSize();
                 this.setNavigationArrows();
+
+                this.droNav.innerHTML = '';
+                let headings = [];
+                let position = this.tree.activeNode;
+
+                while (position) {
+                    headings.push(position);
+                    position = position.parent;
+                }
+
+                headings.reverse();
+
+                for (let i = 0; i < headings.length; i++) {
+                    if (i === headings.length - 1) {
+                        this.droNav.innerHTML += headings[i].heading.innerText;
+                    } else {
+                        this.droNav.innerHTML += headings[i].heading.innerText + ' > ';
+                    }
+                }
+
                 this.setHashInUrl(slide.heading.id);
             }
 
