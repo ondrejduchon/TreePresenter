@@ -437,7 +437,7 @@ input:checked + .slider:before {
     position: absolute;
     padding: 3em;
     padding-top: 5.8em;
-    padding-right: 1em;}
+    padding-right: 2.1em}
 
 #tree-presenter {
   width: 100vw;

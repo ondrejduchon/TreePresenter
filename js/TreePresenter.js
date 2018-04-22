@@ -1605,9 +1605,9 @@
 
                 for (let i = 0; i < headings.length; i++) {
                     if (i === headings.length - 1) {
-                        this.droNav.innerHTML += headings[i].heading.innerText;
+                        this.droNav.innerHTML += '<a href="#' + headings[i].heading.id + '">' + headings[i].heading.innerText + '</a>';
                     } else {
-                        this.droNav.innerHTML += headings[i].heading.innerText + ' > ';
+                        this.droNav.innerHTML += '<a href="#' + headings[i].heading.id + '">' + headings[i].heading.innerText + '</a>' + ' > ';
                     }
                 }
 
