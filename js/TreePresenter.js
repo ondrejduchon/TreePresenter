@@ -640,14 +640,16 @@
                 var timer = null;
 
                 this.slidesElem.addEventListener('mousemove', function () {
-                    if (_this.hideNav) {
+                    if (_this.hideNav && !_this.activeSettings) {
                         clearTimeout(timer);
                         icons.classList.add("active");
                         nav.classList.add("active");
+                        $('#hide-nav').hide();
                         timer = setTimeout(function () {
+                            $('#hide-nav').show();
                             icons.classList.remove("active");
                             nav.classList.remove("active");
-                        }, 1250);
+                        }, 1500);
                     }
                 });
             }
@@ -1579,8 +1581,10 @@
         }, {
             key: 'toggleArrows',
             value: function toggleArrows(left, right, up, down, zoomIn, zoomOut) {
-                // left ? this.nav.left.classList.add('active-arrow') : this.nav.left.classList.remove('active-arrow');
-                // right ? this.nav.right.classList.add('active-arrow') : this.nav.right.classList.remove('active-arrow');
+                if (this.activeZoom) {
+                    right ? this.nav.right.classList.add('active-arrow') : this.nav.right.classList.remove('active-arrow');
+                    left ? this.nav.left.classList.add('active-arrow') : this.nav.left.classList.remove('active-arrow');
+                }
                 up ? this.nav.up.classList.add('active-arrow') : this.nav.up.classList.remove('active-arrow');
                 down ? this.nav.down.classList.add('active-arrow') : this.nav.down.classList.remove('active-arrow');
                 zoomIn ? this.nav.zoom.classList.add('active-in') : this.nav.zoom.classList.remove('active-in');
@@ -1652,7 +1656,7 @@
 
                 for (let i = 0; i < headings.length; i++) {
                     if (i === headings.length - 1) {
-                        this.droNav.innerHTML += '<a href="#' + headings[i].heading.id + '">' + headings[i].heading.innerText + ' (' + contents + ')' + '</a>';
+                        this.droNav.innerHTML += headings[i].heading.innerText + ' (' + contents + ')';
                     } else {
                         this.droNav.innerHTML += '<a href="#' + headings[i].heading.id + '">' + headings[i].heading.innerText + '</a>' + ' > ';
                     }
@@ -1884,6 +1888,10 @@
                     this.activeZoom = false;
                     this.activeZoomSlide = 0;
                     this.setNavigationArrows();
+
+                    // ALWAYS ON - linear
+                    this.nav.left.classList.add('active-arrow');
+                    this.nav.right.classList.add('active-arrow');
                 }
             }
         }, {
