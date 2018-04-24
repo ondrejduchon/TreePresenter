@@ -1414,12 +1414,12 @@
                 help.innerHTML = '\n<div id="tp-help-wrap">\n<h1>Keyboard shortcuts</h1>\n<div>\n' +
                     //'<img src="https://i.imgur.com/YSSkvVP.png">\n</div>\n<div>\n' +
                     '<h2>Zoom in/out</h2>\n<button>SPACE</button>\n</div>\n<div>\n' +
-                    '<h2>Hirearchial navigation</h2>\n<button>&larr; J</button>\n<button>&darr; K</button>\n<button>&rarr; L</button>\n<button>&uarr; I</button>\n</div>\n<div>\n' +
+                    '<h2>Hirearchial navigation</h2>\n<button>&larr; H</button>\n<button>&darr; J</button>\n<button>&rarr; L</button>\n<button>&uarr; K</button>\n</div>\n<div>\n' +
                     '<h2>Linear navigation</h2>\n<button>&larr;</button>\n<button>&rarr;</button>\n</div>\n<div>\n' +
                     '<h2>Settings</h2>\n<button>S</button>\n</div>\n<div>\n' +
                     '<h2>Presentation map</h2>\n<button>M</button>\n</div>\n<div>\n' +
                     '<h2>Downloads</h2>\n<button>D</button>\n</div>\n<div>\n' +
-                    '<h2>Help</h2>\n<button>H, ?</button>\n</div>\n<div>\n' +
+                    '<h2>Help</h2>\n<button>I, ?</button>\n</div>\n<div>\n' +
                     '<h2>Switch to next presentation</h2>\n<button>N</button>\n</div>\n</div>';
                 this.presentationElem.insertBefore(help, this.slidesElem);
                 // this.listenDownload();
@@ -2107,14 +2107,14 @@
                         case 27:
                             _this8.closeWindow();
                             break;
-                        case 74:
+                        case 72:
                             if (_this8.canNavigate('left')) {
                                 _this8.navLeftSibling();
                                 _this8.toggleMiniMap();
                                 _this8.toggleMiniMap();
                             }
                             break;
-                        case 73:
+                        case 75:
                             if (_this8.canNavigate('up')) {
                                 _this8.navParent();
                                 _this8.toggleMiniMap();
@@ -2128,7 +2128,7 @@
                                 _this8.toggleMiniMap();
                             }
                             break;
-                        case 75:
+                        case 74:
                             if (_this8.canNavigate('down')) {
                                 _this8.navChild();
                                 _this8.toggleMiniMap();
@@ -2138,10 +2138,13 @@
                         case 68:
                             if (_this8.canNavigate('download')) _this8.toggleDownload();
                             break;
-                        case 72:
+                        case 73:
                             if (_this8.canNavigate('help')) _this8.toggleHelp();
                             break;
                         case 191:
+                            if (_this8.canNavigate('help')) _this8.toggleHelp();
+                            break;
+                        case 188:
                             if (_this8.canNavigate('help')) _this8.toggleHelp();
                             break;
                         case 77:
