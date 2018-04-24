@@ -1373,6 +1373,10 @@
                 } else {
                     this.showSlide(this.tree.root);
                 }
+
+                // ALWAYS ON - linear
+                this.nav.left.classList.add('active-arrow');
+                this.nav.right.classList.add('active-arrow');
             }
 
             /**
@@ -1538,8 +1542,8 @@
         }, {
             key: 'toggleArrows',
             value: function toggleArrows(left, right, up, down, zoomIn, zoomOut) {
-                left ? this.nav.left.classList.add('active-arrow') : this.nav.left.classList.remove('active-arrow');
-                right ? this.nav.right.classList.add('active-arrow') : this.nav.right.classList.remove('active-arrow');
+                // left ? this.nav.left.classList.add('active-arrow') : this.nav.left.classList.remove('active-arrow');
+                // right ? this.nav.right.classList.add('active-arrow') : this.nav.right.classList.remove('active-arrow');
                 up ? this.nav.up.classList.add('active-arrow') : this.nav.up.classList.remove('active-arrow');
                 down ? this.nav.down.classList.add('active-arrow') : this.nav.down.classList.remove('active-arrow');
                 zoomIn ? this.nav.zoom.classList.add('active-in') : this.nav.zoom.classList.remove('active-in');
@@ -2074,6 +2078,12 @@
              */
 
         }, {
+            key: 'openedMap',
+            value: function openedMap() {
+                return this.activeMiniMap;
+            }
+
+        }, {
             key: 'closeWindow',
             value: function closeWindow() {
                 if (this.activeSettings) {
@@ -2181,9 +2191,19 @@
                             }
                             break;
                         case 38:
+                            if (_this8.openedMap()) {
+                                _this8.navParent();
+                                _this8.toggleMiniMap();
+                                _this8.toggleMiniMap();
+                            }
                             // UP
                             break;
                         case 40:
+                            if (_this8.openedMap()) {
+                                _this8.navChild();
+                                _this8.toggleMiniMap();
+                                _this8.toggleMiniMap();
+                            }
                             // DOWN
                             break;
                     }
