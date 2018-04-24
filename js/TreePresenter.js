@@ -1746,6 +1746,11 @@
                 this.tree.navLinkArr(direction);
             }
         }, {
+            key: 'goToSlideArrow',
+            value: function goToSlideArrow() {
+                window.location.href = $(".activeLinkArr").attr('href');
+            }
+        }, {
             key: 'navLinearForward',
             value: function navLinearForward() {
 
@@ -2265,7 +2270,9 @@
                             // DOWN
                             break;
                         case 13:
-
+                            if (!_this8.openedMap()) {
+                                _this8.goToSlideArrow();
+                            }
                             // ENTER
                             break;
                     }
