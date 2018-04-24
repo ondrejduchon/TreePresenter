@@ -2272,6 +2272,8 @@
                         case 13:
                             if (!_this8.openedMap()) {
                                 _this8.goToSlideArrow();
+                            } else {
+                                _this8.toggleMiniMap();
                             }
                             // ENTER
                             break;
