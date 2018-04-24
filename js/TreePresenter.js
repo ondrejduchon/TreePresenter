@@ -355,16 +355,16 @@
             key: 'setDerivation',
             value: function setDerivation(node) {
                 if (node.children.length) {
-                    var derivation = '';
+                    var derivation = '<ul>';
                     node.children.forEach(function (child) {
                         //node.heading.id
                         derivation += '<li><a href="' + '#' + child.heading.id + '">';
                         derivation += child.heading.innerText;
                         derivation += '</a></li>';
                     });
-                    node.derivation = document.createElement('ul');
-                    // TODO Potencialy incorrected HTML
-                    node.derivation.innerHTML = derivation;
+                    node.derivation = document.createElement('div');
+                    derivation += '</ul>';
+                    node.derivation.innerHTML += derivation;
                 }
             }
 
@@ -2179,6 +2179,12 @@
                             if (_this8.canNavigate('settings')) {
                                 _this8.toggleSettings();
                             }
+                            break;
+                        case 38:
+                            // UP
+                            break;
+                        case 40:
+                            // DOWN
                             break;
                     }
                 };
