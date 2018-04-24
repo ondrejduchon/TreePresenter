@@ -2164,16 +2164,28 @@
                             break;
                         case 39:
                             if (_this8.canNavigate('right')) {
-                                _this8.navLinearForward();
-                                _this8.toggleMiniMap();
-                                _this8.toggleMiniMap();
+                                if (_this8.openedMap()) {
+                                    _this8.navRightSibling();
+                                    _this8.toggleMiniMap();
+                                    _this8.toggleMiniMap();
+                                } else {
+                                    _this8.navLinearForward();
+                                    _this8.toggleMiniMap();
+                                    _this8.toggleMiniMap();
+                                }
                             }
                             break;
                         case 37:
                             if (_this8.canNavigate('left')) {
-                                _this8.navLinearBackward();
-                                _this8.toggleMiniMap();
-                                _this8.toggleMiniMap();
+                                if (_this8.openedMap()) {
+                                    _this8.navLeftSibling();
+                                    _this8.toggleMiniMap();
+                                    _this8.toggleMiniMap();
+                                } else {
+                                    _this8.navLinearBackward();
+                                    _this8.toggleMiniMap();
+                                    _this8.toggleMiniMap();
+                                }
                             }
                             break;
                         case 78:
