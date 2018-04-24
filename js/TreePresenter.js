@@ -1581,7 +1581,13 @@
         }, {
             key: 'toggleArrows',
             value: function toggleArrows(left, right, up, down, zoomIn, zoomOut) {
-                if (this.activeZoom) {
+                let contents = this.tree.activeNode.content.length;
+
+                if (this.tree.activeNode.derivation === null) {
+                    contents--;
+                }
+
+                if (this.activeZoom && contents > 0) {
                     right ? this.nav.right.classList.add('active-arrow') : this.nav.right.classList.remove('active-arrow');
                     left ? this.nav.left.classList.add('active-arrow') : this.nav.left.classList.remove('active-arrow');
                 }
