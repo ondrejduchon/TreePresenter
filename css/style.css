@@ -121,7 +121,8 @@ table {
   #tp-icons.active {
     visibility: visible; }
   #tp-icons i {
-    margin-right: 0.3em; }
+    margin-right: 0.3em;
+    color: #4d4d4d; }
   #tp-icons i:hover {
     cursor: pointer; }
 
@@ -247,9 +248,9 @@ input:checked + .slider:before {
     #tp-settings #tp-settings-wrap button {
       border: none;
       color: black;
-      width: 8em;
-      height: 4em;
-      font-size: 45%;
+      width: 5.5em;
+      height: 3em;
+      font-size: 80%;
       text-align: center;
       text-decoration: none;
       display: inline-block;
@@ -267,8 +268,8 @@ input:checked + .slider:before {
     position: absolute;
     content: "✓";
     font-size: 2em;
-    top: 0.4em;
-    left: 1.6em;
+    top: 0;
+    left: 1em;
     color: white; }
   #tp-settings #themes #blue {
     background-color: #2196F3; }
