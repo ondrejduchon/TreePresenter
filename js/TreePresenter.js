@@ -356,12 +356,26 @@
             value: function setDerivation(node) {
                 if (node.children.length) {
                     var derivation = '<ul>';
-                    node.children.forEach(function (child) {
-                        //node.heading.id
-                        derivation += '<li><a href="' + '#' + child.heading.id + '">';
-                        derivation += child.heading.innerText;
-                        derivation += '</a></li>';
-                    });
+
+                    for (var i = 0; i < node.children.length; i++) {
+                        if (i === 0) {
+                            derivation += '<li><a class="activeLinkArr" href="' + '#' + node.children[i].heading.id + '">';
+                            derivation += node.children[i].heading.innerText;
+                            derivation += '</a></li>';
+                        } else {
+                            derivation += '<li><a href="' + '#' + node.children[i].heading.id + '">';
+                            derivation += node.children[i].heading.innerText;
+                            derivation += '</a></li>';
+                        }
+                    }
+
+                    // node.children.forEach(function (child) {
+                    //     //node.heading.id
+                    //     derivation += '<li><a href="' + '#' + child.heading.id + '">';
+                    //     derivation += child.heading.innerText;
+                    //     derivation += '</a></li>';
+                    // });
+
                     node.derivation = document.createElement('div');
                     derivation += '</ul>';
                     node.derivation.innerHTML += derivation;
@@ -489,6 +503,29 @@
              * Set right sibling like active node (slide)
              */
 
+        }, {
+            key: 'navLinkArr',
+            value: function navLinkArr(direction) {
+                if (direction === 'up') {
+                    let node = $(".activeLinkArr");
+                    let prevNode = node.parent().prev().children();
+
+                    let attrNN = prevNode.attr('href');
+                    if (typeof attrNN !== typeof undefined && attrNN !== false) {
+                        node.attr('class', '');
+                        prevNode.attr('class', 'activeLinkArr');
+                    }
+                } else {
+                    let node = $(".activeLinkArr");
+                    let nextNode = node.parent().next().children();
+
+                    let attrNN = nextNode.attr('href');
+                    if (typeof attrNN !== typeof undefined && attrNN !== false) {
+                        node.attr('class', '');
+                        nextNode.attr('class', 'activeLinkArr');
+                    }
+                }
+            }
         }, {
             key: 'rightSibling',
             value: function rightSibling() {
@@ -1704,6 +1741,11 @@
              */
 
         }, {
+            key: 'changeLinkAr',
+            value: function changeLinkAr(direction) {
+                this.tree.navLinkArr(direction);
+            }
+        }, {
             key: 'navLinearForward',
             value: function navLinearForward() {
 
@@ -2207,6 +2249,8 @@
                                 _this8.navParent();
                                 _this8.toggleMiniMap();
                                 _this8.toggleMiniMap();
+                            } else {
+                                _this8.changeLinkAr('up');
                             }
                             // UP
                             break;
@@ -2215,8 +2259,14 @@
                                 _this8.navChild();
                                 _this8.toggleMiniMap();
                                 _this8.toggleMiniMap();
+                            } else {
+                                _this8.changeLinkAr('down');
                             }
                             // DOWN
+                            break;
+                        case 13:
+
+                            // ENTER
                             break;
                     }
                 };

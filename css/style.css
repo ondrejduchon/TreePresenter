@@ -438,6 +438,10 @@ input:checked + .slider:before {
     padding: 3em;
     padding-top: 5.8em;
     padding-right: 2.1em}
+  #slides .activeLinkArr {
+    border: #f44336 1px solid;
+    border-radius: 8px;
+    padding: 0.2em}
 
 #tree-presenter {
   width: 100vw;
