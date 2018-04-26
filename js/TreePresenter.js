@@ -1793,6 +1793,7 @@
         }, {
             key: 'goToSlideArrow',
             value: function goToSlideArrow() {
+                this.tree.prevNode = this.tree.activeNode;
                 window.location.href = $(".activeLinkArr").attr('href');
             }
         }, {
@@ -2191,6 +2192,15 @@
             }
 
         }, {
+            key: 'goBack',
+            value: function goBack() {
+                if (this.tree.prevNode && this.tree.prevNode !== this.tree.activeNode) {
+                    this.hideSlide(this.tree.activeNode);
+                    this.tree.activeNode = this.tree.prevNode;
+                    this.showSlide(this.tree.activeNode);
+                }
+            }
+        }, {
             key: 'closeWindow',
             value: function closeWindow() {
                 if (this.activeSettings) {
@@ -2215,9 +2225,6 @@
 
                 document.onkeydown = function (e) {
                     switch (e.keyCode) {
-                        case 8:
-                            _this8.closeWindow();
-                            break;
                         case 32:
                             if (_this8.canNavigate('zoom')) _this8.navZoom();
                             break;
@@ -2336,6 +2343,9 @@
                                 _this8.toggleMiniMap();
                             }
                             // ENTER
+                            break;
+                        case 8:
+                            _this8.goBack();
                             break;
                     }
                 };
