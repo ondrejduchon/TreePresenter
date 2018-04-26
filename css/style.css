@@ -396,7 +396,7 @@ input:checked + .slider:before {
   position: relative; }
   #slides h1, #slides h2, #slides h3, #slides h4, #slides h5, #slides h6 {
     font-size: 3em;
-    padding: 1.2em 0 0.2em 5%;
+    padding: 1.2em 0 0.3em 5%;
     border-bottom: black 1px solid;
     margin-bottom: 0.5em}
   #slides p {
@@ -450,7 +450,7 @@ input:checked + .slider:before {
     right: 0;
     position: absolute;
     padding: 3em;
-    padding-top: 5.8em;
+    padding-top: 6.3em;
     padding-right: 2.1em}
   #slides .activeLinkArr {
     outline: #f44336 thin solid }
