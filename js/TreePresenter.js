@@ -1349,7 +1349,10 @@
                 window.addEventListener("hashchange", function () {
                     if (location.hash.slice(1)) {
                         var prevNode = _this.tree.activeNode;
-                        var searchedElement = _this.tree.searchById(location.hash.slice(1));
+                        let hashUrl = location.hash.slice(1);
+                        let contentId = hashUrl.split("/");
+                        var searchedElement = _this.tree.searchById(contentId[0]);
+
                         if (searchedElement) {
                             _this.hideSlide(prevNode);
                             _this.showSlide(searchedElement);
