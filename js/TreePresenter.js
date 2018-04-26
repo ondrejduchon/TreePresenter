@@ -1627,9 +1627,13 @@
 
         }, {
             key: 'setHashInUrl',
-            value: function setHashInUrl(id) {
+            value: function setHashInUrl(id, contentId = null) {
                 if (id) {
-                    window.location.hash = '#' + id;
+                    if (contentId !== null) {
+                        window.location.hash = '#' + id + '/' + contentId;
+                    } else {
+                        window.location.hash = '#' + id;
+                    }
                 }
             }
 
@@ -1714,6 +1718,12 @@
                         this.activeZoomSlide = 0;
                     }
                     this.showSlide(this.tree.leftSibling());
+                }
+
+                if (this.tree.activeNode.content.length > 1) {
+                    let slideId = this.tree.activeNode.heading.id;
+                    let contentId = this.activeZoomSlide;
+                    this.setHashInUrl(slideId, contentId);
                 }
             }
 
@@ -1897,12 +1907,20 @@
                     this.activeZoom = true;
                     this.activeZoomSlide = 0;
                     this.setNavigationArrows();
+
+                    let slideId = this.tree.activeNode.heading.id;
+                    let contentId = this.activeZoomSlide;
+                    this.setHashInUrl(slideId, contentId);
+
                 } else if (this.tree.activeNode.content.length && this.activeZoom && this.tree.activeNode.derivation) {
                     this.slidesElem.removeChild(this.tree.activeNode.content[this.activeZoomSlide]);
                     this.slidesElem.appendChild(this.tree.activeNode.derivation);
                     this.activeZoom = false;
                     this.activeZoomSlide = 0;
                     this.setNavigationArrows();
+
+                    let slideId = this.tree.activeNode.heading.id;
+                    this.setHashInUrl(slideId);
 
                     // ALWAYS ON - linear
                     this.nav.right.classList.remove('active-arrowL');
