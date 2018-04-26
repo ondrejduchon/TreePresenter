@@ -1546,7 +1546,7 @@
                 var icons = document.createElement('div');
                 icons.id = 'tp-icons';
 
-                icons.innerHTML = '\n                    <i class="fas fa-question fa-lg" id="tp-icon-help"></i>\n                    <i class="fas fa-download fa-lg" id="tp-icon-download"></i>\n                    <i class="fas fa-cog fa-lg" id="tp-icon-settings"></i>\n                    <i class="fas fa-sitemap fa-lg" id="tp-icon-map"></i>\n                    ';
+                icons.innerHTML = '\n                    <a class="fas fa-question fa-lg" id="tp-icon-help"></a>\n                    <a class="fas fa-download fa-lg" id="tp-icon-download"></a>\n                    <a class="fas fa-cog fa-lg" id="tp-icon-settings"></a>\n                    <a class="fas fa-sitemap fa-lg" id="tp-icon-map"></a>\n                    ';
 
                 this.slidesElem.appendChild(icons);
                 this.listenIcons();

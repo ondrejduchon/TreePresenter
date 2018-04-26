@@ -120,10 +120,10 @@ table {
   visibility: hidden; }
   #tp-icons.active {
     visibility: visible; }
-  #tp-icons i {
+  #tp-icons a {
     margin-right: 0.3em;
     color: #4d4d4d; }
-  #tp-icons i:hover {
+  #tp-icons a:hover {
     cursor: pointer; }
 
 #tree-structure {
@@ -428,19 +428,19 @@ input:checked + .slider:before {
     margin-left: 5%;
     max-height: calc(100% - 6em);
     max-width: 90%; }
-.red #slides a {
+.red #slides li a {
     color: #f44336;
     text-decoration: none;
     padding: 0.2em}
-.green #slides a {
+.green #slides li a {
   color: #4CAF50;
   text-decoration: none;
   padding: 0.2em}
-.blue #slides a {
+.blue #slides li a {
   color: #2196F3;
   text-decoration: none;
   padding: 0.2em}
-.white #slides a {
+.white #slides li a {
   color: black;
   text-decoration: none;
   padding: 0.2em}
@@ -519,7 +519,7 @@ input:checked + .slider:before {
   border-bottom-color: #f44336; }
 .red #navigation #navigation-wrap #tp-down.active-arrow {
   border-top-color: #f44336; }
-.red #tp-icons i:hover {
+.red #tp-icons a:hover {
   color: #f44336; }
 
 .green h1, .green h2, .green h3, .green h4, .green h5, .green h6 {
@@ -538,7 +538,7 @@ input:checked + .slider:before {
   border-bottom-color: #4CAF50; }
 .green #navigation #navigation-wrap #tp-down.active-arrow {
   border-top-color: #4CAF50; }
-.green #tp-icons i:hover {
+.green #tp-icons a:hover {
   color: #4CAF50; }
 
 .blue h1, .blue h2, .blue h3, .blue h4, .blue h5, .blue h6 {
@@ -557,7 +557,7 @@ input:checked + .slider:before {
   border-bottom-color: #2196F3; }
 .blue #navigation #navigation-wrap #tp-down.active-arrow {
   border-top-color: #2196F3; }
-.blue #tp-icons i:hover {
+.blue #tp-icons a:hover {
   color: #2196F3; }
 
 .white h1, .white h2, .white h3, .white h4, .white h5, .white h6 {
@@ -576,7 +576,7 @@ input:checked + .slider:before {
   border-bottom-color: black; }
 .white #navigation #navigation-wrap #tp-down.active-arrow {
   border-top-color: black; }
-.white #tp-icons i:hover {
+.white #tp-icons a:hover {
   color: black; }
 
 /* required Treant lib styles */
