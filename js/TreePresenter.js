@@ -1773,11 +1773,12 @@
                 this.tree.prevNode = this.tree.activeNode;
 
                 if (this.activeZoom) {
-                    if (this.tree.activeNode.children.length === 0 && this.tree.activeNode.rightSibling === null) {
+                    let tmpSlideZoom = this.activeZoomSlide;
+                    let tmpSlide = this.tree.activeNode;
+                    this.navRightSibling();
+                    if (this.activeZoomSlide === tmpSlideZoom && this.tree.activeNode === tmpSlide && this.tree.activeNode.children.length === 0 && this.tree.activeNode.rightSibling === null) {
                         this.navParent();
                         this.navRightSibling();
-                    } else {
-                        this.changeSlideContent(1);
                     }
                 } else if (this.tree.activeNode.children.length) {
                     this.hideSlide(this.tree.activeNode);
