@@ -499,6 +499,10 @@ input:checked + .slider:before {
   border-right-color: #f44336; }
 .red #navigation #navigation-wrap #tp-right.active-arrow {
   border-left-color: #f44336; }
+.red #navigation #navigation-wrap #tp-left.active-arrowL {
+  border-right-color: orange; }
+.red #navigation #navigation-wrap #tp-right.active-arrowL {
+  border-left-color: orange; }
 .red #navigation #navigation-wrap #tp-up.active-arrow {
   border-bottom-color: #f44336; }
 .red #navigation #navigation-wrap #tp-down.active-arrow {
