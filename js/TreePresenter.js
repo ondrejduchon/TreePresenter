@@ -1605,7 +1605,7 @@
             key: 'setNavigationArrows',
             value: function setNavigationArrows() {
                 if (this.activeZoom && !this.tree.activeNode.derivation) {
-                    this.toggleArrows(this.tree.activeNode.content[this.activeZoomSlide - 1] || this.tree.activeNode.leftSibling, this.tree.activeNode.content[this.activeZoomSlide + 1] || this.tree.activeNode.rightSibling, true, false, false, false);
+                    this.toggleArrows(this.tree.activeNode.content[this.activeZoomSlide - 1] || this.tree.activeNode.leftSibling, this.tree.activeNode.content[this.activeZoomSlide + 1] || this.tree.activeNode.rightSibling, true, false, false, true);
                 } else if (this.activeZoom) {
                     this.toggleArrows(this.tree.activeNode.content[this.activeZoomSlide - 1], this.tree.activeNode.content[this.activeZoomSlide + 1], true, false, false, true);
                 } else {
