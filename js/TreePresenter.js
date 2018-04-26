@@ -1597,9 +1597,18 @@
                         this.nav.right.classList.remove('active-arrow');
                         this.nav.right.classList.add('active-arrowL')
                     }
+                    if (left) {
+                        this.nav.left.classList.remove('active-arrowL');
+                        this.nav.left.classList.add('active-arrow')
+                    } else {
+                        this.nav.left.classList.remove('active-arrow');
+                        this.nav.left.classList.add('active-arrowL')
+                    }
                 } else {
                     this.nav.right.classList.remove('active-arrowL');
-                    this.nav.right.classList.add('active-arrow')
+                    this.nav.right.classList.add('active-arrow');
+                    this.nav.left.classList.remove('active-arrowL');
+                    this.nav.left.classList.add('active-arrow')
                 }
                 up ? this.nav.up.classList.add('active-arrow') : this.nav.up.classList.remove('active-arrow');
                 down ? this.nav.down.classList.add('active-arrow') : this.nav.down.classList.remove('active-arrow');
@@ -1926,6 +1935,7 @@
 
                     // ALWAYS ON - linear
                     this.nav.right.classList.remove('active-arrowL');
+                    this.nav.left.classList.remove('active-arrowL');
                     this.nav.left.classList.add('active-arrow');
                     this.nav.right.classList.add('active-arrow');
                 }
