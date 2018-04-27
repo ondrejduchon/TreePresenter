@@ -428,30 +428,33 @@ input:checked + .slider:before {
     margin-left: 5%;
     max-height: calc(100% - 6em);
     max-width: 90%; }
-.red #slides li a {
+  .red #slides li a {
     color: #f44336;
     text-decoration: none;
     padding: 0.2em}
-.green #slides li a {
-  color: #4CAF50;
-  text-decoration: none;
-  padding: 0.2em}
-.blue #slides li a {
-  color: #2196F3;
-  text-decoration: none;
-  padding: 0.2em}
-.white #slides li a {
-  color: black;
-  text-decoration: none;
-  padding: 0.2em}
-  #slides a:hover {
+  .green #slides li a {
+    color: #4CAF50;
+    text-decoration: none;
+    padding: 0.2em}
+  .blue #slides li a {
+    color: #2196F3;
+    text-decoration: none;
+    padding: 0.2em}
+  .white #slides li a {
+    color: black;
+    text-decoration: none;
+    padding: 0.2em}
+    #slides a:hover {
     color: black; }
   #slides #tp-navigation {
     right: 0;
     position: absolute;
     padding: 3em;
     padding-top: 6.3em;
-    padding-right: 2.1em}
+    padding-right: 2.1em;}
+  #slides #tp-navigation a {
+    color: #f44336;
+    text-decoration: none;  }
   #slides .activeLinkArr {
     outline: #f44336 thin solid }
 
