@@ -1792,7 +1792,11 @@
             key: 'goToSlideArrow',
             value: function goToSlideArrow() {
                 this.tree.prevNode = this.tree.activeNode;
-                window.location.href = $(".activeLinkArr").attr('href');
+                const hrefActive = $(".activeLinkArr");
+
+                if (hrefActive.attr('href')) {
+                    window.location.href = hrefActive.attr('href');
+                }
             }
         }, {
             key: 'navLinearForward',
@@ -2222,9 +2226,6 @@
                 const _this8 = this;
 
                 document.onkeydown = function (e) {
-
-                    console.log(e);
-
                     switch (e.key) {
                         case ' ':
                             if (_this8.canNavigate('zoom')) _this8.navZoom();
@@ -2322,7 +2323,6 @@
                             } else {
                                 _this8.changeLinkAr('up');
                             }
-                            // UP
                             break;
                         case 'ArrowDown':
                             if (_this8.openedMap()) {
@@ -2332,7 +2332,6 @@
                             } else {
                                 _this8.changeLinkAr('down');
                             }
-                            // DOWN
                             break;
                         case 'Enter':
                             if (!_this8.openedMap()) {
@@ -2340,7 +2339,6 @@
                             } else {
                                 _this8.toggleMiniMap();
                             }
-                            // ENTER
                             break;
                         case 'Backspace':
                             _this8.goBack();
