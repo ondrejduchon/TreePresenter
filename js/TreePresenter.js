@@ -1,16 +1,16 @@
 (function () {
     'use strict';
 
-    var classCallCheck = function (instance, Constructor) {
+    const classCallCheck = function (instance, Constructor) {
         if (!(instance instanceof Constructor)) {
             throw new TypeError("Cannot call a class as a function");
         }
     };
 
-    var createClass = function () {
+    const createClass = function () {
         function defineProperties(target, props) {
-            for (var i = 0; i < props.length; i++) {
-                var descriptor = props[i];
+            for (let i = 0; i < props.length; i++) {
+                const descriptor = props[i];
                 descriptor.enumerable = descriptor.enumerable || false;
                 descriptor.configurable = true;
                 if ("value" in descriptor) descriptor.writable = true;
@@ -26,9 +26,9 @@
     }();
 
 
-    var toConsumableArray = function (arr) {
+    const toConsumableArray = function (arr) {
         if (Array.isArray(arr)) {
-            for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) arr2[i] = arr[i];
+            for (let i = 0, arr2 = Array(arr.length); i < arr.length; i++) arr2[i] = arr[i];
 
             return arr2;
         } else {
@@ -39,7 +39,7 @@
     /**
      * Tree node (presentation slide)
      */
-    var Node = function Node(parent, heading, id) {
+    const Node = function Node(parent, heading, id) {
         classCallCheck(this, Node);
 
         /**
@@ -90,7 +90,7 @@
          * https://www.w3.org/TR/html5/sections.html#sample-outlines - code example 4
          */
         if (heading.implied) {
-            var untitled = document.createElement("H1");
+            const untitled = document.createElement("H1");
             untitled.innerText = "Tree Presentation";
             untitled.id = "tp-untitled-" + id;
             this.heading = untitled;
@@ -100,8 +100,7 @@
     /**
      * Tree when each slide is leaf (Node)
      */
-
-    var Tree = function () {
+    const Tree = function () {
         function Tree() {
             classCallCheck(this, Tree);
 
@@ -141,10 +140,10 @@
         createClass(Tree, [{
             key: 'build',
             value: function build() {
-                var outline = HTML5Outline(document.body);
+                const outline = HTML5Outline(document.body);
                 // outliner can return forest (multiple trees)
-                for (var i = 0; i < outline.sections.length; i++) {
-                    var root = this.createLeafs(null, outline.sections[i]);
+                for (let i = 0; i < outline.sections.length; i++) {
+                    const root = this.createLeafs(null, outline.sections[i]);
                     this.forest.push(root);
                 }
                 // set first presentation like default
@@ -204,8 +203,8 @@
                     return node;
                 }
 
-                var searchedNode = null;
-                for (var i = 0; searchedNode === null && i < node.children.length; i++) {
+                let searchedNode = null;
+                for (let i = 0; searchedNode === null && i < node.children.length; i++) {
                     searchedNode = this.searchNodeById(node.children[i], id);
                 }
                 return searchedNode;
@@ -219,8 +218,8 @@
         }, {
             key: 'searchById',
             value: function searchById(id) {
-                for (var i = 0; i < this.forest.length; i++) {
-                    var searchedElem = this.searchNodeById(this.forest[i], id);
+                for (let i = 0; i < this.forest.length; i++) {
+                    const searchedElem = this.searchNodeById(this.forest[i], id);
                     if (searchedElem) {
                         this.activeNode = searchedElem;
                         this.root = this.forest[i];
@@ -252,7 +251,7 @@
                     return null;
                 }
 
-                var nextSibling = this.findNextSibling(node.parent.rightSibling);
+                const nextSibling = this.findNextSibling(node.parent.rightSibling);
                 if (nextSibling) {
                     return nextSibling;
                 }
@@ -289,13 +288,13 @@
                     return null;
                 }
                 // case 2: return first child with derivation
-                for (var i = 0; i < node.children.length; i++) {
+                for (let i = 0; i < node.children.length; i++) {
                     if (node.children[i].derivation) {
                         return node.children[i];
                     }
                 }
                 // case3: return next sibling with derivation
-                var nextSibling = this.findNextSibling(node.rightSibling);
+                const nextSibling = this.findNextSibling(node.rightSibling);
                 if (nextSibling) {
                     return nextSibling;
                 }
@@ -333,7 +332,7 @@
                     return null;
                 }
                 // case2: return prev sibling with derivation
-                var prevSibling = this.findPrevSibling(node.leftSibling);
+                const prevSibling = this.findPrevSibling(node.leftSibling);
                 if (prevSibling) {
                     return prevSibling;
                 }
@@ -355,9 +354,9 @@
             key: 'setDerivation',
             value: function setDerivation(node) {
                 if (node.children.length) {
-                    var derivation = '<ul>';
+                    let derivation = '<ul>';
 
-                    for (var i = 0; i < node.children.length; i++) {
+                    for (let i = 0; i < node.children.length; i++) {
                         if (i === 0) {
                             derivation += '<li><a class="activeLinkArr" href="' + '#' + node.children[i].heading.id + '">';
                             derivation += node.children[i].heading.innerText;
@@ -416,9 +415,9 @@
             key: 'createLeafs',
             value: function createLeafs(root, leaf) {
 
-                var node = new Node(root, leaf.heading, this.newID());
+                const node = new Node(root, leaf.heading, this.newID());
 
-                for (var i = 0; i < leaf.sections.length; i++) {
+                for (let i = 0; i < leaf.sections.length; i++) {
                     node.children.push(this.createLeafs(node, leaf.sections[i]));
                 }
                 this.setSiblings(node.children);
@@ -450,7 +449,7 @@
         }, {
             key: 'setSiblings',
             value: function setSiblings(siblings) {
-                for (var i = 0; i < siblings.length; i++) {
+                for (let i = 0; i < siblings.length; i++) {
                     if (i - 1 >= 0) {
                         siblings[i].leftSibling = siblings[i - 1];
                     }
@@ -471,7 +470,7 @@
                 if (node.id === ID) {
                     this.activeNode = node;
                 } else {
-                    for (var i = 0; i < node.children.length; i++) {
+                    for (let i = 0; i < node.children.length; i++) {
                         this.setSlideByID(node.children[i], ID);
                     }
                 }
@@ -551,8 +550,8 @@
         }, {
             key: 'getChildrenForGraph',
             value: function getChildrenForGraph(children) {
-                var ch = [];
-                for (var i = 0; i < children.length; i++) {
+                const ch = [];
+                for (let i = 0; i < children.length; i++) {
                     ch.push({
                         text: {name: children[i].heading.innerText},
                         HTMLclass: children[i].id,
@@ -582,7 +581,7 @@
     /**
      * Class handles everything related with presentation settings
      */
-    var Settings = function () {
+    const Settings = function () {
         function Settings(presentation, slides, presenter) {
             classCallCheck(this, Settings);
 
@@ -618,7 +617,7 @@
         createClass(Settings, [{
             key: 'build',
             value: function build() {
-                var settings = document.createElement('div');
+                const settings = document.createElement('div');
                 settings.id = 'tp-settings';
 
                 settings.innerHTML = '\n                    <div id="tp-settings-wrap">\n                        <h1>Settings</h1>\n                        <div>\n                            <h2>Hiding navigation</h2>\n                            <div id="hide-nav">\n                                <label class="switch">\n                                    <input id="hide-nav-button" type="checkbox">\n                                    <div class="slider round"></div>\n                                </label>\n                            </div>\n                        </div>\n                        <div>\n                            <h2>Aspect ratio</h2>\n                            <div id="ratios">\n                                <button id="ratio-4-3">4:3</button>\n                                <button id="ratio-16-9">16:9</button>\n                                <button id="ratio-16-10">16:10</button>\n                                <button id="ratio-auto">auto</button>\n                            </div>\n                        </div>\n                        <div>\n                            <h2>Theme</h2>\n                            <div id="themes">\n                                <button id="black"></button>\n                                <button id="red"></button>\n                                <button id="green"></button>\n                                <button id="blue"></button>\n                            </div>\n                        </div>\n                    </div>';
@@ -633,11 +632,11 @@
         }, {
             key: 'listenMouse',
             value: function listenMouse() {
-                var _this = this;
+                const _this = this;
 
-                var icons = document.getElementById('tp-icons');
-                var nav = document.getElementById('navigation');
-                var timer = null;
+                const icons = document.getElementById('tp-icons');
+                const nav = document.getElementById('navigation');
+                let timer = null;
 
                 this.slidesElem.addEventListener('mousemove', function () {
                     if (_this.hideNav && !_this.activeSettings) {
@@ -661,8 +660,8 @@
         }, {
             key: 'adjustListSize',
             value: function adjustListSize() {
-                var listType = 'ul';
-                var list = document.querySelectorAll('#slides > ' + listType + ' li');
+                let listType = 'ul';
+                let list = document.querySelectorAll('#slides > ' + listType + ' li');
                 if (!list.length) {
                     listType = 'ol';
                     list = document.querySelectorAll('#slides > ' + listType + ' li');
@@ -671,8 +670,8 @@
                     }
                 }
 
-                var listFontSize = 2.3; // default font size
-                var spaceForList = document.getElementById('tree-presenter').clientHeight - document.querySelectorAll('#slides > h1, #slides > h2, #slides > h3, #slides > h4, #slides > h5, #slides > h6')[0].clientHeight - document.getElementById('tp-icons').clientHeight / 2;
+                let listFontSize = 2.3; // default font size
+                const spaceForList = document.getElementById('tree-presenter').clientHeight - document.querySelectorAll('#slides > h1, #slides > h2, #slides > h3, #slides > h4, #slides > h5, #slides > h6')[0].clientHeight - document.getElementById('tp-icons').clientHeight / 2;
 
                 while (spaceForList < document.querySelector('#slides > ' + listType).clientHeight) {
                     if (listFontSize === 0.1) {
@@ -695,7 +694,7 @@
         }, {
             key: 'calculateWidth',
             value: function calculateWidth(ratio, screen) {
-                var newWidth = (ratio * screen.height).toFixed(3);
+                const newWidth = (ratio * screen.height).toFixed(3);
                 return (100 / screen.width * newWidth).toFixed(1) + 'vw';
             }
 
@@ -708,7 +707,7 @@
         }, {
             key: 'calculateHeight',
             value: function calculateHeight(ratio, screen) {
-                var newHeight = (screen.width / ratio).toFixed(3);
+                const newHeight = (screen.width / ratio).toFixed(3);
                 return (100 / screen.height * newHeight).toFixed(1) + 'vh';
             }
 
@@ -720,7 +719,7 @@
         }, {
             key: 'getScreenSizes',
             value: function getScreenSizes() {
-                var screen = {
+                const screen = {
                     width: window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth,
                     height: window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight
                 };
@@ -738,7 +737,7 @@
         }, {
             key: 'getRatioValue',
             value: function getRatioValue(id) {
-                var ratio = 0;
+                let ratio = 0;
                 switch (id) {
                     case 'ratio-4-3':
                         ratio = 1.333;
@@ -788,7 +787,7 @@
         }, {
             key: 'updateScreenRatio',
             value: function updateScreenRatio() {
-                var screen = this.getScreenSizes();
+                const screen = this.getScreenSizes();
                 this.setScreenRatio(screen);
             }
 
@@ -799,7 +798,7 @@
         }, {
             key: 'adjustScreenRatio',
             value: function adjustScreenRatio(aspectRatio) {
-                var screen = this.getScreenSizes();
+                const screen = this.getScreenSizes();
                 this.screenRatio = this.getRatioValue(aspectRatio);
                 localStorage.setItem('aspectRatio', aspectRatio);
                 this.setScreenRatio(screen);
@@ -878,16 +877,16 @@
         }, {
             key: 'listen',
             value: function listen() {
-                var _this2 = this;
+                const _this2 = this;
 
-                var ratiosElem = document.getElementById('ratios');
-                var hideNavElem = document.getElementById('hide-nav-button');
-                var themesElem = document.getElementById('themes');
+                const ratiosElem = document.getElementById('ratios');
+                const hideNavElem = document.getElementById('hide-nav-button');
+                const themesElem = document.getElementById('themes');
 
                 ratiosElem.addEventListener('click', function (e) {
                     if (e.target.id !== 'ratios') {
-                        var children = ratiosElem.children;
-                        for (var i = 0; i < children.length; i++) {
+                        const children = ratiosElem.children;
+                        for (let i = 0; i < children.length; i++) {
                             children[i].classList.remove('active');
                         }
                         e.target.classList.add('active');
@@ -901,8 +900,8 @@
 
                 themesElem.addEventListener('click', function (e) {
                     if (e.target.id !== 'themes') {
-                        var children = themesElem.children;
-                        for (var i = 0; i < children.length; i++) {
+                        const children = themesElem.children;
+                        for (let i = 0; i < children.length; i++) {
                             children[i].classList.remove('active');
                         }
                         e.target.classList.add('active');
@@ -920,10 +919,10 @@
             value: function setFromLocalStorage() {
                 if (typeof Storage !== 'undefined') {
 
-                    var aspectRatio = localStorage.getItem('aspectRatio');
-                    var theme = localStorage.getItem('theme');
-                    var hideNav = localStorage.getItem('hideNav');
-                    var linearNav = localStorage.getItem('linearNav');
+                    const aspectRatio = localStorage.getItem('aspectRatio');
+                    const theme = localStorage.getItem('theme');
+                    const hideNav = localStorage.getItem('hideNav');
+                    const linearNav = localStorage.getItem('linearNav');
 
                     if (aspectRatio === 'ratio-4-3' || aspectRatio === 'ratio-16-9' || aspectRatio === 'ratio-16-10' || aspectRatio === 'ratio-auto') {
                         this.adjustScreenRatio(aspectRatio);
@@ -962,7 +961,7 @@
     /**
      * Allows creation of PDF with derivated content
      */
-    var PDF = function () {
+    const PDF = function () {
         function PDF(tree) {
             classCallCheck(this, PDF);
 
@@ -1005,9 +1004,9 @@
                     // slide heading
                     this.doc.content.push({text: node.heading.innerText, style: 'header'});
                     // transform html derivation content to array
-                    var nodeList = [].concat(toConsumableArray(node.derivation.childNodes));
+                    let nodeList = [].concat(toConsumableArray(node.derivation.childNodes));
                     nodeList = Array.from(nodeList);
-                    var list = [];
+                    const list = [];
                     nodeList.forEach(function (node) {
                         list.push(node.innerText);
                     });
@@ -1016,7 +1015,7 @@
                     return;
                 }
 
-                for (var i = 0; i < node.children.length; i++) {
+                for (let i = 0; i < node.children.length; i++) {
                     this.setContent(node.children[i]);
                 }
             }
@@ -1037,7 +1036,7 @@
     /**
      * Allows creation of LaTeX with derivated content
      */
-    var LaTeX = function () {
+    const LaTeX = function () {
         function LaTeX(tree) {
             classCallCheck(this, LaTeX);
 
@@ -1092,14 +1091,14 @@
         }, {
             key: 'setContent',
             value: function setContent(node) {
-                var _this = this;
+                const _this = this;
 
                 if (node.derivation) {
                     this.begin('frame');
                     this.doc += '{' + node.heading.innerText + '}\n';
                     this.begin('itemize');
 
-                    var nodeList = [].concat(toConsumableArray(node.derivation.childNodes));
+                    let nodeList = [].concat(toConsumableArray(node.derivation.childNodes));
                     nodeList = Array.from(nodeList);
                     nodeList.forEach(function (node) {
                         _this.doc += '\t\\item ' + node.innerText + '\n';
@@ -1111,7 +1110,7 @@
                     return;
                 }
 
-                for (var i = 0; i < node.children.length; i++) {
+                for (let i = 0; i < node.children.length; i++) {
                     this.setContent(node.children[i]);
                 }
             }
@@ -1133,12 +1132,12 @@
         }, {
             key: 'prepareFile',
             value: function prepareFile(filename, text) {
-                var pom = document.createElement('a');
+                const pom = document.createElement('a');
                 pom.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
                 pom.setAttribute('download', filename);
 
                 if (document.createEvent) {
-                    var event = document.createEvent('MouseEvents');
+                    const event = document.createEvent('MouseEvents');
                     event.initEvent('click', true, true);
                     pom.dispatchEvent(event);
                 } else {
@@ -1152,7 +1151,7 @@
     /**
      * Allows creation of HTML with derivated content
      */
-    var HTML = function () {
+    const HTML = function () {
         function HTML(tree) {
             classCallCheck(this, HTML);
 
@@ -1184,12 +1183,12 @@
         }, {
             key: 'setContent',
             value: function setContent(node) {
-                var _this = this;
+                const _this = this;
 
                 if (node.derivation) {
                     this.doc += '<h1>' + node.heading.innerText + '</h1>';
 
-                    var nodeList = [].concat(toConsumableArray(node.derivation.childNodes));
+                    let nodeList = [].concat(toConsumableArray(node.derivation.childNodes));
                     nodeList = Array.from(nodeList);
                     this.doc += '<ul>';
                     nodeList.forEach(function (node) {
@@ -1200,7 +1199,7 @@
                     return;
                 }
 
-                for (var i = 0; i < node.children.length; i++) {
+                for (let i = 0; i < node.children.length; i++) {
                     this.setContent(node.children[i]);
                 }
             }
@@ -1222,12 +1221,12 @@
         }, {
             key: 'prepareFile',
             value: function prepareFile(filename, text) {
-                var pom = document.createElement('a');
+                const pom = document.createElement('a');
                 pom.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
                 pom.setAttribute('download', filename);
 
                 if (document.createEvent) {
-                    var event = document.createEvent('MouseEvents');
+                    const event = document.createEvent('MouseEvents');
                     event.initEvent('click', true, true);
                     pom.dispatchEvent(event);
                 } else {
@@ -1242,8 +1241,7 @@
      * Provides all the necessary operations to run the presentation.
      * (render content into the DOM, navigate between slides etc.)
      */
-
-    var Presenter = function () {
+    const Presenter = function () {
         function Presenter() {
             classCallCheck(this, Presenter);
 
@@ -1344,13 +1342,13 @@
         createClass(Presenter, [{
             key: 'listenHashChanges',
             value: function listenHashChanges() {
-                var _this = this;
+                const _this = this;
 
                 window.addEventListener("hashchange", function () {
                     if (location.hash.slice(1)) {
-                        var prevNode = _this.tree.activeNode;
+                        const prevNode = _this.tree.activeNode;
                         let hashUrl = location.hash.slice(1);
-                        var searchedElement = _this.tree.searchById(hashUrl);
+                        const searchedElement = _this.tree.searchById(hashUrl);
 
                         if (searchedElement) {
                             _this.hideSlide(prevNode);
@@ -1369,8 +1367,8 @@
             value: function setPolyfill() {
                 if (!("path" in Event.prototype)) Object.defineProperty(Event.prototype, "path", {
                     get: function get$$1() {
-                        var path = [];
-                        var currentElem = this.target;
+                        const path = [];
+                        let currentElem = this.target;
                         while (currentElem) {
                             path.push(currentElem);
                             currentElem = currentElem.parentElement;
@@ -1389,7 +1387,7 @@
         }, {
             key: 'listenScreenResize',
             value: function listenScreenResize() {
-                var _this2 = this;
+                const _this2 = this;
 
                 this.settings.adjustListSize();
                 window.addEventListener('resize', function () {
@@ -1405,7 +1403,7 @@
             key: 'setFirstSlide',
             value: function setFirstSlide() {
                 if (location.hash.slice(1)) {
-                    var searchedElement = this.tree.searchById(location.hash.slice(1));
+                    const searchedElement = this.tree.searchById(location.hash.slice(1));
                     if (searchedElement) {
                         this.showSlide(searchedElement);
                     } else {
@@ -1427,7 +1425,7 @@
         }, {
             key: 'createSlidesWindow',
             value: function createSlidesWindow() {
-                var p = document.createElement('div');
+                const p = document.createElement('div');
                 p.id = 'slides';
 
                 this.slidesElem = this.presentationElem.appendChild(p);
@@ -1440,7 +1438,7 @@
         }, {
             key: 'createPresentationWindow',
             value: function createPresentationWindow() {
-                var body = document.getElementsByTagName('body')[0];
+                const body = document.getElementsByTagName('body')[0];
                 this.presentationElem = document.createElement('div');
                 this.presentationElem.id = 'tree-presenter';
                 body.appendChild(this.presentationElem);
@@ -1453,7 +1451,7 @@
         }, {
             key: 'createHelpWindow',
             value: function createHelpWindow() {
-                var help = document.createElement('div');
+                const help = document.createElement('div');
                 help.id = 'tp-help';
 
                 help.innerHTML = '\n<div id="tp-help-wrap">\n<h1>Keyboard shortcuts</h1>\n<div>\n' +
@@ -1495,9 +1493,9 @@
         }, {
             key: 'createCloseButton',
             value: function createCloseButton() {
-                var _this3 = this;
+                const _this3 = this;
 
-                var button = document.createElement('div');
+                const button = document.createElement('div');
                 button.id = 'tp-close-window';
                 button.innerHTML = '<i class="fa fa-times" aria-hidden="true"></i>';
                 this.presentationElem.insertBefore(button, this.slidesElem);
@@ -1515,7 +1513,7 @@
         }, {
             key: 'createDownloadWindow',
             value: function createDownloadWindow() {
-                var download = document.createElement('div');
+                const download = document.createElement('div');
                 download.id = 'tp-download';
 
                 download.innerHTML = '\n                    <div id="tp-download-wrap">\n                        <h1>Download</h1>\n\n                        <div>\n                            <h2>PDF</h2>\n                            <button id="tp-download-pdf"><i class="fas fa-download fa-lg"></i></button>\n                        </div>\n                        <div>\n                            <h2>LaTeX</h2>\n                            <button id="tp-download-latex"><i class="fas fa-download fa-lg"></i></button>\n                        </div>\n                        <div>\n                            <h2>HTML</h2>\n                            <button id="tp-download-html"><i class="fas fa-download fa-lg"></i></button>\n                        </div>\n                    </div>';
@@ -1530,7 +1528,7 @@
         }, {
             key: 'createMinimapWindow',
             value: function createMinimapWindow() {
-                var tree = document.createElement('div');
+                const tree = document.createElement('div');
                 tree.id = 'tree-structure';
                 tree.classList.add('chart');
                 this.presentationElem.insertBefore(tree, this.slidesElem);
@@ -1543,7 +1541,7 @@
         }, {
             key: 'createIcons',
             value: function createIcons() {
-                var icons = document.createElement('div');
+                const icons = document.createElement('div');
                 icons.id = 'tp-icons';
 
                 icons.innerHTML = '\n                    <a class="fas fa-question fa-lg" id="tp-icon-help"></a>\n                    <a class="fas fa-download fa-lg" id="tp-icon-download"></a>\n                    <a class="fas fa-cog fa-lg" id="tp-icon-settings"></a>\n                    <a class="fas fa-sitemap fa-lg" id="tp-icon-map"></a>\n                    ';
@@ -1567,7 +1565,7 @@
         }, {
             key: 'createNavigation',
             value: function createNavigation() {
-                var navigation = document.createElement('div');
+                const navigation = document.createElement('div');
                 navigation.id = 'navigation';
 
                 navigation.innerHTML = '\n                    <div id="navigation-wrap">\n                        <div id="tp-left"></div>\n                        <div id="tp-right"></div>\n                        <div id="tp-up"></div>\n                        <div id="tp-down"></div>\n                        <div id="tp-zoom"></div>\n                    </div>\n                    ';
@@ -2019,11 +2017,11 @@
                     return;
                 }
 
-                var xUp = e.touches[0].clientX;
-                var yUp = e.touches[0].clientY;
+                const xUp = e.touches[0].clientX;
+                const yUp = e.touches[0].clientY;
 
-                var xDiff = this.xDown - xUp;
-                var yDiff = this.yDown - yUp;
+                const xDiff = this.xDown - xUp;
+                const yDiff = this.yDown - yUp;
 
                 if (Math.abs(xDiff) > Math.abs(yDiff)) {
                     if (xDiff > 0) {
@@ -2049,7 +2047,7 @@
              * Handle swipe gestures
              */
             value: function listenTouches() {
-                var _this4 = this;
+                const _this4 = this;
 
                 this.presentationElem.addEventListener('touchstart', function (e) {
                     if (!_this4.activeMiniMap && !_this4.activeSettings) {
@@ -2070,11 +2068,11 @@
         }, {
             key: 'listenDownload',
             value: function listenDownload() {
-                var _this5 = this;
+                const _this5 = this;
 
-                var pdf = document.getElementById('tp-download-pdf');
-                var latex = document.getElementById('tp-download-latex');
-                var html = document.getElementById('tp-download-html');
+                const pdf = document.getElementById('tp-download-pdf');
+                const latex = document.getElementById('tp-download-latex');
+                const html = document.getElementById('tp-download-html');
 
                 pdf.addEventListener('click', function () {
                     return _this5.pdf.download();
@@ -2094,7 +2092,7 @@
         }, {
             key: 'listenIcons',
             value: function listenIcons() {
-                var _this6 = this;
+                const _this6 = this;
 
                 this.icons = {
                     map: document.getElementById("tp-icon-map"),
@@ -2124,7 +2122,7 @@
         }, {
             key: 'listenNavigation',
             value: function listenNavigation() {
-                var _this7 = this;
+                const _this7 = this;
 
                 this.nav = {
                     left: document.getElementById("tp-left"),
@@ -2153,7 +2151,7 @@
         }, {
             key: 'changePresentation',
             value: function changePresentation(next) {
-                var activeSlide = this.tree.activeNode;
+                const activeSlide = this.tree.activeNode;
                 if (this.tree.changePresentation(next)) {
                     this.hideSlide(activeSlide);
                     this.showSlide(this.tree.activeNode);
@@ -2221,62 +2219,62 @@
         }, {
             key: 'listenKeys',
             value: function listenKeys() {
-                var _this8 = this;
+                const _this8 = this;
 
                 document.onkeydown = function (e) {
-                    switch (e.keyCode) {
-                        case 32:
+
+                    console.log(e);
+
+                    switch (e.key) {
+                        case ' ':
                             if (_this8.canNavigate('zoom')) _this8.navZoom();
                             break;
-                        case 27:
+                        case 'Escape':
                             _this8.closeWindow();
                             break;
-                        case 72:
+                        case 'h':
                             if (_this8.canNavigate('left')) {
                                 _this8.navLeftSibling();
                                 _this8.toggleMiniMap();
                                 _this8.toggleMiniMap();
                             }
                             break;
-                        case 75:
+                        case 'k':
                             if (_this8.canNavigate('up')) {
                                 _this8.navParent();
                                 _this8.toggleMiniMap();
                                 _this8.toggleMiniMap();
                             }
                             break;
-                        case 76:
+                        case 'l':
                             if (_this8.canNavigate('right')) {
                                 _this8.navRightSibling();
                                 _this8.toggleMiniMap();
                                 _this8.toggleMiniMap();
                             }
                             break;
-                        case 74:
+                        case 'j':
                             if (_this8.canNavigate('down')) {
                                 _this8.navChild();
                                 _this8.toggleMiniMap();
                                 _this8.toggleMiniMap();
                             }
                             break;
-                        case 68:
+                        case 'd':
                             if (_this8.canNavigate('download')) _this8.toggleDownload();
                             break;
-                        case 73:
+                        case 'i':
                             if (_this8.canNavigate('help')) _this8.toggleHelp();
                             break;
-                        case 191:
+                        case '?':
                             if (_this8.canNavigate('help')) _this8.toggleHelp();
                             break;
-                        case 188:
-                            if (_this8.canNavigate('help')) _this8.toggleHelp();
-                            break;
-                        case 77:
+                        case 'm':
                             if (_this8.canNavigate('map')) {
                                 _this8.toggleMiniMap();
                             }
                             break;
-                        case 39:
+                        case 'ArrowRight':
                             if (_this8.canNavigate('right')) {
                                 if (_this8.openedMap()) {
                                     _this8.navRightSibling();
@@ -2289,7 +2287,7 @@
                                 }
                             }
                             break;
-                        case 37:
+                        case 'ArrowLeft':
                             if (_this8.canNavigate('left')) {
                                 if (_this8.openedMap()) {
                                     _this8.navLeftSibling();
@@ -2302,7 +2300,7 @@
                                 }
                             }
                             break;
-                        case 78:
+                        case 'n':
                             if (_this8.canNavigate('change')) {
                                 if (e.key === "n") {
                                     _this8.changePresentation(true);
@@ -2311,12 +2309,12 @@
                                 }
                             }
                             break;
-                        case 83:
+                        case 's':
                             if (_this8.canNavigate('settings')) {
                                 _this8.toggleSettings();
                             }
                             break;
-                        case 38:
+                        case 'ArrowUp':
                             if (_this8.openedMap()) {
                                 _this8.navParent();
                                 _this8.toggleMiniMap();
@@ -2326,7 +2324,7 @@
                             }
                             // UP
                             break;
-                        case 40:
+                        case 'ArrowDown':
                             if (_this8.openedMap()) {
                                 _this8.navChild();
                                 _this8.toggleMiniMap();
@@ -2336,7 +2334,7 @@
                             }
                             // DOWN
                             break;
-                        case 13:
+                        case 'Enter':
                             if (!_this8.openedMap()) {
                                 _this8.goToSlideArrow();
                             } else {
@@ -2344,7 +2342,7 @@
                             }
                             // ENTER
                             break;
-                        case 8:
+                        case 'Backspace':
                             _this8.goBack();
                             break;
                     }
@@ -2359,7 +2357,7 @@
         }, {
             key: 'switchToSlide',
             value: function switchToSlide(element) {
-                var nodeID = Number(element.path[1].classList[1]);
+                const nodeID = Number(element.path[1].classList[1]);
                 this.hideSlide(this.tree.activeNode);
                 this.tree.setSlideByID(this.tree.root, nodeID);
                 this.showSlide(this.tree.activeNode);
@@ -2374,7 +2372,7 @@
         }, {
             key: 'listenMinimapNodes',
             value: function listenMinimapNodes() {
-                var _this9 = this;
+                const _this9 = this;
 
                 Array.from(document.getElementsByClassName("node")).forEach(function (element) {
                     return element.addEventListener("click", function (e) {
@@ -2407,7 +2405,7 @@
         /**
          * START PRESENTATION
          */
-        var presentation = new Presenter();
+        const presentation = new Presenter();
 
         /**
          * CREATE MINIMAP
