@@ -302,8 +302,7 @@ input:checked + .slider:before {
 }
 
 #tp-settings #tp-settings-wrap {
-    width: 80%;
-    height: 80%;
+    width: 90%;
 }
 
 #tp-settings #tp-settings-wrap > div {
@@ -321,6 +320,7 @@ input:checked + .slider:before {
 #tp-settings #tp-settings-wrap h2 {
     flex-grow: 1;
     font-size: 1.5em;
+    padding-right: 1em;
     color: black;
 }
 
@@ -479,8 +479,7 @@ input:checked + .slider:before {
 }
 
 #tp-help #tp-help-wrap {
-    width: 80%;
-    height: 80%;
+    width: 90%;
 }
 
 #tp-help #tp-help-wrap > div {
@@ -499,6 +498,7 @@ input:checked + .slider:before {
     flex-grow: 1;
     font-size: 1.5em;
     color: black;
+    padding-right: 1em;
 }
 
 #tp-help #tp-help-wrap button {
