@@ -525,7 +525,7 @@ input:checked + .slider:before {
 
 #slides h1, #slides h2, #slides h3, #slides h4, #slides h5, #slides h6 {
     font-size: 3em;
-    padding: 1.2em 0 0.3em 5%;
+    padding: 1.2em 0 0.2em 5%;
     border-bottom: black 1px solid;
     margin-bottom: 0.5em
 }
@@ -605,9 +605,9 @@ input:checked + .slider:before {
 }
 
 #slides #tp-navigation {
-    right: 0;
-    position: absolute;
-    padding: 6.3em 2.1em 3em 3em;
+    text-align: right;
+    padding-top: 1em;
+    padding-right: 1.8em;
 }
 
 #slides #tp-navigation a {
