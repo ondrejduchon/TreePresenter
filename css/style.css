@@ -525,7 +525,7 @@ input:checked + .slider:before {
 
 #slides h1, #slides h2, #slides h3, #slides h4, #slides h5, #slides h6 {
     font-size: 3em;
-    padding: 1.2em 0 0.2em 5%;
+    padding: 0.5em 0 0.2em 5%;
     border-bottom: black 1px solid;
     margin-bottom: 0.5em
 }
