@@ -1809,6 +1809,7 @@
                     let tmpSlide = this.tree.activeNode;
                     if (this.activeMiniMap) {
                         this.navParent();
+                        this.navChild();
                     } else {
                         this.navRightSibling();
                     }
