@@ -2206,11 +2206,7 @@
         }, {
             key: 'goBack',
             value: function goBack() {
-                if (this.tree.prevNode && this.tree.prevNode !== this.tree.activeNode) {
-                    this.hideSlide(this.tree.activeNode);
-                    this.tree.activeNode = this.tree.prevNode;
-                    this.showSlide(this.tree.activeNode);
-                }
+                window.history.back();
             }
         }, {
             key: 'closeWindow',
