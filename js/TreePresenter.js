@@ -1606,8 +1606,8 @@
                 navigation.id = 'navigation';
 
                 navigation.innerHTML = '\n<div id="navigation-wrap">' +
-                    '\n<div id="tp-left">H ←</div>' +
-                    '\n<div id="tp-right">L →</div>' +
+                    '\n<div id="tp-left">H</div>' +
+                    '\n<div id="tp-right">L</div>' +
                     '\n<div id="tp-up">K</div>' +
                     '\n<div id="tp-down">J</div>' +
                     '\n<div id="tp-zoom"></div>' +

@@ -188,7 +188,7 @@ table {
     transform: translate(-50%, -50%);
     visibility: hidden;
     opacity: 0;
-    transition: opacity 0.2s linear;
+    transition: opacity 0.3s linear;
 }
 
 #tree-structure .active {
@@ -216,7 +216,7 @@ table {
 #tree-structure.active {
     visibility: visible;
     opacity: 1;
-    transition: opacity 0.1s linear;
+    transition: opacity 0.3s linear;
 }
 
 #tree-structure.active * {
@@ -296,13 +296,13 @@ input:checked + .slider:before {
     color: black;
     visibility: hidden;
     opacity: 0;
-    transition: opacity 0.4s linear;
+    transition: opacity 0.3s linear;
 }
 
 #tp-settings.active {
     visibility: visible;
     opacity: 0.98;
-    transition: opacity 0.4s linear;
+    transition: opacity 0.3s linear;
 }
 
 #tp-settings #tp-settings-wrap {
@@ -317,13 +317,13 @@ input:checked + .slider:before {
 
 #tp-settings #tp-settings-wrap h1 {
     flex-grow: 1;
-    font-size: 2.5em;
+    font-size: 2em;
     margin-bottom: 2em;
 }
 
 #tp-settings #tp-settings-wrap h2 {
     flex-grow: 1;
-    font-size: 1.5em;
+    font-size: 1em;
     padding-right: 1em;
     color: black;
 }
@@ -390,13 +390,13 @@ input:checked + .slider:before {
     color: black;
     visibility: hidden;
     opacity: 0;
-    transition: opacity 0.4s linear;
+    transition: opacity 0.3s linear;
 }
 
 #tp-download.active {
     visibility: visible;
     opacity: 0.98;
-    transition: opacity 0.4s linear;
+    transition: opacity 0.3s linear;
 }
 
 #tp-download #tp-download-wrap {
@@ -412,13 +412,13 @@ input:checked + .slider:before {
 
 #tp-download #tp-download-wrap h1 {
     flex-grow: 1;
-    font-size: 2.5em;
+    font-size: 2em;
     margin-bottom: 2em;
 }
 
 #tp-download #tp-download-wrap h2 {
     flex-grow: 1;
-    font-size: 1.5em;
+    font-size: 1em;
     color: black;
 }
 
@@ -473,13 +473,13 @@ input:checked + .slider:before {
     color: black;
     visibility: hidden;
     opacity: 0;
-    transition: opacity 0.4s linear;
+    transition: opacity 0.3s linear;
 }
 
 #tp-help.active {
     visibility: visible;
     opacity: 0.98;
-    transition: opacity 0.4s linear;
+    transition: opacity 0.3s linear;
 }
 
 #tp-help #tp-help-wrap {
@@ -494,13 +494,13 @@ input:checked + .slider:before {
 
 #tp-help #tp-help-wrap h1 {
     flex-grow: 1;
-    font-size: 2.5em;
+    font-size: 2em;
     margin-bottom: 2em;
 }
 
 #tp-help #tp-help-wrap h2 {
     flex-grow: 1;
-    font-size: 1.5em;
+    font-size: 1em;
     color: black;
     padding-right: 1em;
 }
