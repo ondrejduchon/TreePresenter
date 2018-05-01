@@ -296,13 +296,13 @@ input:checked + .slider:before {
     color: black;
     visibility: hidden;
     opacity: 0;
-    transition: opacity 0.2s linear;
+    transition: opacity 0.4s linear;
 }
 
 #tp-settings.active {
     visibility: visible;
-    opacity: 1;
-    transition: opacity 0.1s linear;
+    opacity: 0.98;
+    transition: opacity 0.4s linear;
 }
 
 #tp-settings #tp-settings-wrap {
@@ -390,13 +390,13 @@ input:checked + .slider:before {
     color: black;
     visibility: hidden;
     opacity: 0;
-    transition: opacity 0.2s linear;
+    transition: opacity 0.4s linear;
 }
 
 #tp-download.active {
     visibility: visible;
-    opacity: 1;
-    transition: opacity 0.1s linear;
+    opacity: 0.98;
+    transition: opacity 0.4s linear;
 }
 
 #tp-download #tp-download-wrap {
@@ -473,13 +473,13 @@ input:checked + .slider:before {
     color: black;
     visibility: hidden;
     opacity: 0;
-    transition: opacity 0.2s linear;
+    transition: opacity 0.4s linear;
 }
 
 #tp-help.active {
     visibility: visible;
-    opacity: 1;
-    transition: opacity 0.1s linear;
+    opacity: 0.98;
+    transition: opacity 0.4s linear;
 }
 
 #tp-help #tp-help-wrap {
