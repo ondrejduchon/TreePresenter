@@ -1807,7 +1807,11 @@
                 if (this.activeZoom) {
                     let tmpSlideZoom = this.activeZoomSlide;
                     let tmpSlide = this.tree.activeNode;
-                    this.navRightSibling();
+                    if (this.activeMiniMap) {
+                        this.navParent();
+                    } else {
+                        this.navRightSibling();
+                    }
                     if (this.activeZoomSlide === tmpSlideZoom && this.tree.activeNode === tmpSlide && this.tree.activeNode.children.length === 0 && this.tree.activeNode.rightSibling === null) {
                         this.navParent();
                         this.navRightSibling();
@@ -1830,7 +1834,10 @@
         }, {
             key: 'navRightSibling',
             value: function navRightSibling() {
-                if (this.activeLinearNav) {
+
+                if (this.activeMiniMap && !this.tree.activeNode.rightSibling) {
+                    this.navLinearForward();
+                } else if (this.activeLinearNav) {
                     this.navLinearForward();
                 } else if (this.activeZoom) {
                     this.changeSlideContent(1);
@@ -1898,7 +1905,10 @@
         }, {
             key: 'navLeftSibling',
             value: function navLeftSibling() {
-                if (this.activeLinearNav) {
+
+                if (this.activeMiniMap && !this.tree.activeNode.leftSibling) {
+                    this.navLinearBackward();
+                } else if (this.activeLinearNav) {
                     this.navLinearBackward();
                 } else if (this.activeZoom) {
                     this.changeSlideContent(-1);
