@@ -1568,7 +1568,13 @@
                 const navigation = document.createElement('div');
                 navigation.id = 'navigation';
 
-                navigation.innerHTML = '\n                    <div id="navigation-wrap">\n                        <div id="tp-left"></div>\n                        <div id="tp-right"></div>\n                        <div id="tp-up"></div>\n                        <div id="tp-down"></div>\n                        <div id="tp-zoom"></div>\n                    </div>\n                    ';
+                navigation.innerHTML = '\n<div id="navigation-wrap">' +
+                    '\n<div id="tp-left">H</div>' +
+                    '\n<div id="tp-right">L</div>' +
+                    '\n<div id="tp-up">K</div>' +
+                    '\n<div id="tp-down">J</div>' +
+                    '\n<div id="tp-zoom"></div>' +
+                    '\n</div>\n';
 
                 this.slidesElem.appendChild(navigation);
                 this.listenNavigation();
@@ -2271,9 +2277,9 @@
                         case 'd':
                             if (_this8.canNavigate('download')) _this8.toggleDownload();
                             break;
-                        case 'i':
-                            if (_this8.canNavigate('help')) _this8.toggleHelp();
-                            break;
+                        // case 'i':
+                        //     if (_this8.canNavigate('help')) _this8.toggleHelp();
+                        //     break;
                         case '?':
                             if (_this8.canNavigate('help')) _this8.toggleHelp();
                             break;
