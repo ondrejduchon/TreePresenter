@@ -112,6 +112,8 @@ table {
     border-bottom: 1.2em solid transparent;
     border-right: 1.2em solid #dddddd;
     margin-top: 1.8em;
+    width: 0.7em !important;
+    right: 4.8em;
 }
 
 #navigation #tp-left.active-arrow {

@@ -1454,16 +1454,6 @@
                 const help = document.createElement('div');
                 help.id = 'tp-help';
 
-                // help.innerHTML = '\n<div id="tp-help-wrap">\n<h1>Keyboard shortcuts</h1>\n<div>\n' +
-                //     '<h2>Zoom in/out</h2>\n<button>SPACE</button>\n</div>\n<div>\n' +
-                //     '<h2>Hirearchial navigation</h2>\n<button>&larr; H</button>\n<button>&darr; J</button>\n<button>&rarr; L</button>\n<button>&uarr; K</button>\n</div>\n<div>\n' +
-                //     '<h2>Linear navigation</h2>\n<button>&larr;</button>\n<button>&rarr;</button>\n</div>\n<div>\n' +
-                //     '<h2>Settings</h2>\n<button>S</button>\n</div>\n<div>\n' +
-                //     '<h2>Presentation map</h2>\n<button>M</button>\n</div>\n<div>\n' +
-                //     '<h2>Downloads</h2>\n<button>D</button>\n</div>\n<div>\n' +
-                //     '<h2>Help</h2>\n<button>I, ?</button>\n</div>\n<div>\n' +
-                //     '<h2>Switch to next presentation</h2>\n<button>N</button>\n</div>\n</div>';
-
                 help.innerHTML = '<div id="tp-help-wrap">\n' +
                     '    <h1>Keyboard shortcuts</h1>\n' +
                     '    <div>\n' +
@@ -1616,8 +1606,8 @@
                 navigation.id = 'navigation';
 
                 navigation.innerHTML = '\n<div id="navigation-wrap">' +
-                    '\n<div id="tp-left">H</div>' +
-                    '\n<div id="tp-right">L</div>' +
+                    '\n<div id="tp-left">H ←</div>' +
+                    '\n<div id="tp-right">L →</div>' +
                     '\n<div id="tp-up">K</div>' +
                     '\n<div id="tp-down">J</div>' +
                     '\n<div id="tp-zoom"></div>' +
