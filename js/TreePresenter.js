@@ -358,11 +358,11 @@
 
                     for (let i = 0; i < node.children.length; i++) {
                         if (i === 0) {
-                            derivation += '<li><a class="activeLinkArr" href="' + '#' + node.children[i].heading.id + '">';
+                            derivation += '<li><a class="activeLinkArr" href="' + '#' + node.children[i].heading.id + '" tabindex="1">';
                             derivation += node.children[i].heading.innerText;
                             derivation += '</a></li>';
                         } else {
-                            derivation += '<li><a href="' + '#' + node.children[i].heading.id + '">';
+                            derivation += '<li><a href="' + '#' + node.children[i].heading.id + '" tabindex="1">';
                             derivation += node.children[i].heading.innerText;
                             derivation += '</a></li>';
                         }
