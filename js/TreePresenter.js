@@ -1606,11 +1606,11 @@
                 navigation.id = 'navigation';
 
                 navigation.innerHTML = '\n<div id="navigation-wrap">' +
-                    '\n<div id="tp-left">H</div>' +
-                    '\n<div id="tp-right">L</div>' +
-                    '\n<div id="tp-up">K</div>' +
-                    '\n<div id="tp-down">J</div>' +
-                    '\n<div id="tp-zoom"></div>' +
+                    '\n<div id="tp-left" tabindex="0">H</div>' +
+                    '\n<div id="tp-right" tabindex="0">L</div>' +
+                    '\n<div id="tp-up" tabindex="0">K</div>' +
+                    '\n<div id="tp-down" tabindex="0">J</div>' +
+                    '\n<div id="tp-zoom" tabindex="0"></div>' +
                     '\n</div>\n';
 
                 this.slidesElem.appendChild(navigation);
