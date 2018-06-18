@@ -1412,10 +1412,6 @@
                 } else {
                     this.showSlide(this.tree.root);
                 }
-
-                // ALWAYS ON - linear
-                this.nav.left.classList.add('active-arrow');
-                this.nav.right.classList.add('active-arrow');
             }
 
             /**
@@ -1647,9 +1643,9 @@
                     }
                 } else {
                     this.nav.right.classList.remove('active-arrowL');
-                    this.nav.right.classList.add('active-arrow');
                     this.nav.left.classList.remove('active-arrowL');
-                    this.nav.left.classList.add('active-arrow')
+                    left ? this.nav.left.classList.add('active-arrow') : this.nav.left.classList.remove('active-arrow');
+                    right ? this.nav.right.classList.add('active-arrow') : this.nav.right.classList.remove('active-arrow');
                 }
                 up ? this.nav.up.classList.add('active-arrow') : this.nav.up.classList.remove('active-arrow');
                 down ? this.nav.down.classList.add('active-arrow') : this.nav.down.classList.remove('active-arrow');
@@ -1850,12 +1846,9 @@
                 if (this.activeZoom) {
                     let tmpSlideZoom = this.activeZoomSlide;
                     let tmpSlide = this.tree.activeNode;
-                    if (this.activeMiniMap) {
-                        this.navParent();
-                        this.navChild();
-                    } else {
-                        this.navRightSibling();
-                    }
+
+                    this.navRightSibling();
+
                     if (this.activeZoomSlide === tmpSlideZoom && this.tree.activeNode === tmpSlide && this.tree.activeNode.children.length === 0 && this.tree.activeNode.rightSibling === null) {
                         this.navParent();
                         this.navRightSibling();
@@ -1879,9 +1872,7 @@
             key: 'navRightSibling',
             value: function navRightSibling() {
 
-                if (this.activeMiniMap && !this.tree.activeNode.rightSibling) {
-                    this.navLinearForward();
-                } else if (this.activeLinearNav) {
+                if (this.activeLinearNav) {
                     this.navLinearForward();
                 } else if (this.activeZoom) {
                     this.changeSlideContent(1);
@@ -1950,9 +1941,7 @@
             key: 'navLeftSibling',
             value: function navLeftSibling() {
 
-                if (this.activeMiniMap && !this.tree.activeNode.leftSibling) {
-                    this.navLinearBackward();
-                } else if (this.activeLinearNav) {
+                if (this.activeLinearNav) {
                     this.navLinearBackward();
                 } else if (this.activeZoom) {
                     this.changeSlideContent(-1);
@@ -1993,8 +1982,6 @@
                     // ALWAYS ON - linear
                     this.nav.right.classList.remove('active-arrowL');
                     this.nav.left.classList.remove('active-arrowL');
-                    this.nav.left.classList.add('active-arrow');
-                    this.nav.right.classList.add('active-arrow');
                 }
             }
         }, {
@@ -2314,9 +2301,6 @@
                         case 'd':
                             if (_this8.canNavigate('download')) _this8.toggleDownload();
                             break;
-                        // case 'i':
-                        //     if (_this8.canNavigate('help')) _this8.toggleHelp();
-                        //     break;
                         case '?':
                             if (_this8.canNavigate('help')) _this8.toggleHelp();
                             break;
@@ -2327,28 +2311,16 @@
                             break;
                         case 'ArrowRight':
                             if (_this8.canNavigate('right')) {
-                                if (_this8.openedMap()) {
-                                    _this8.navRightSibling();
-                                    _this8.toggleMiniMap();
-                                    _this8.toggleMiniMap();
-                                } else {
-                                    _this8.navLinearForward();
-                                    _this8.toggleMiniMap();
-                                    _this8.toggleMiniMap();
-                                }
+                                _this8.navLinearForward();
+                                _this8.toggleMiniMap();
+                                _this8.toggleMiniMap();
                             }
                             break;
                         case 'ArrowLeft':
                             if (_this8.canNavigate('left')) {
-                                if (_this8.openedMap()) {
-                                    _this8.navLeftSibling();
-                                    _this8.toggleMiniMap();
-                                    _this8.toggleMiniMap();
-                                } else {
-                                    _this8.navLinearBackward();
-                                    _this8.toggleMiniMap();
-                                    _this8.toggleMiniMap();
-                                }
+                                _this8.navLinearBackward();
+                                _this8.toggleMiniMap();
+                                _this8.toggleMiniMap();
                             }
                             break;
                         case 'n':
